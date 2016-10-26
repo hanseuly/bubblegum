@@ -19,7 +19,7 @@ class HomeController < ApplicationController
   def listpre
     @posts = Post.all
     @post = @posts.last
-    
+
     unless params[:id].nil?
       @post = Post.find(params[:id])
     end
