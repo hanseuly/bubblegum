@@ -340,8 +340,16 @@ div.a:hover .a2 {
   position:relative;
 }
 
-.machine_name2 {
-  // color:gray;
+.machine_up {
+  position:absolute;
+  top:0px;
+  right:0px;
+  width:25px;
+  height:25px;
+  background-image:url(/sources/icon/icon-update.png);
+  background-size:contain;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 .lever {
