@@ -1,70 +1,38 @@
-<!-- <%#= render partial: '/home/part/nav.html.erb' %> -->
 <style>
   body{
-    /*height:100vh;*/
-    /*overflow-y:hidden;*/
-    /*background:#ffc0cb;*/
+    height:100vh;
+    overflow-y:hidden;
+    background:#ffc0cb;
   }
 </style>
 
-<a href="/home/index"><div class="home_img" style="top:40px;height:70px;"> </div></a>
+<a href="/home/login"><div class="index_logo"></div></a>
+<div>#당신이_과학자라면</div>
 
-<div class="white_bg" style="background:none; opacity: 0.2;">
-  <div class="machine">
-    <div class="clock" id="clockbox"></div>
-    <img class="lever" style="cursor:default;"src="/sources/lever2.png">
+<!--------------- CONTENT ----------------------------------------------------->
+
+
+
+<div class="white_bg">
+  <div class="row" style="opacity:0.2">
+    <div class="col-md-1"></div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2"></div>
+
+    <div class="col-md-2">
+      <div class="machine">
+        <div class="machine_name">과학</div>
+        <img class="lever lever_working" src="/sources/lever2.png">
+      </div>
+    </div>
+
+    <div class="col-md-2"></div>
+    <div class="col-md-2"></div>
+
   </div>
 </div>
+<div class="clock" id="clockbox"></div>
 
-<!-- <div class="clock">TODAY'S NEWS</div> -->
-
-<!-- <div class="row" style="margin:0;">
-
-  <div class="col-md-3">
-    <a href="/home/main/1">
-      <div class="listbox" style="background-image:url(/sources/news/alphago.jpg);">
-        <div class="listbox2">
-          <h5 class="listbox_title">알파고, 세계 최정상 <br>이세돌 9단을 누르다</h5>
-          <h6 class="listbox_info">2016-03-09</h6>
-        </div>
-      </div>
-    </a>
-  </div>
-
-  <div class="col-md-3">
-    <a href="/home/listpre">
-      <div class="listbox" style="background-image:url(http://img.yonhapnews.co.kr/photo/yna/YH/2016/09/11/PYH2016091107300001300_P2.jpg);">
-        <div class="listbox2">
-          <h5 class="listbox_title">갤노트7 리콜 파문 확산… <br>애플 최대 반사이익</h5>
-          <h6 class="listbox_info">2016-09-11</h6>
-        </div>
-      </div>
-    </a>
-  </div>
-
-  <div class="col-md-3">
-    <a href="/home/main/3">
-      <div class="listbox" style="background-image:url(http://imgnews.naver.net/image/366/2016/10/16/2016101600213_0_99_20161016121707.jpg?type=w540);">
-        <div class="listbox2">
-          <h5 class="listbox_title">[과학TALK] 화성 개척 선언 머스크·오바마...유전자 조작 미생물 <br>퍼뜨리자는 아이디어까지</h5>
-          <h6 class="listbox_info">2016-10-16</h6>
-        </div>
-      </div>
-    </a>
-  </div>
-
-  <div class="col-md-3">
-    <a href="/home/main/4">
-      <div class="listbox" style="background-image:url(http://img.hani.co.kr/imgdb/resize/2016/0912/00503964_20160912.JPG);">
-        <div class="listbox2">
-          <h5 class="listbox_title">온나라 뒤흔든 지진공포…<br>“아이 안고 부랴부랴 집 밖으로”</h5>
-          <h6 class="listbox_info">2016-09-13</h6>
-        </div>
-      </div>
-    </a>
-  </div>
-
-</div> -->
 
 <div class="row" style="margin:0;">
   <% @posts.each do |post| %>
