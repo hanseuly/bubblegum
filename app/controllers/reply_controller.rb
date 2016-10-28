@@ -1,4 +1,6 @@
 class ReplyController < ApplicationController
+  REPLY_DESTROY = 5
+
   def create
     reply = Reply.new
     reply.post_id = params[:post_id]
@@ -33,7 +35,9 @@ class ReplyController < ApplicationController
   def anti_count_update
     reply = Reply.find(params[:reply_id])
     reply.update(unlike_count: reply.unlike_count + 1)
-    render json: { count: reply.unlike_count }
+    num = reply.unlike_count
+    reply.destroy if num >= REPLY_DESTROY
+    render json: { count: num }
   end
 
   def delete
