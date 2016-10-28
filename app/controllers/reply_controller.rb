@@ -12,7 +12,7 @@ class ReplyController < ApplicationController
     reply.content = params[:content] unless params[:content].nil?
     reply.img_url = DataFile.save(params[:upload], "/post/#{params[:post_id]}").to_s unless params[:upload].nil?
     reply.save
-    # render json: { 
+    # render json: {
     #               Reply:          Reply.all,
     #               current_reply:  reply,
     #               current_post:   Post.find(params[:post_id])
@@ -26,28 +26,14 @@ class ReplyController < ApplicationController
 
   def count_update
     reply = Reply.find(params[:reply_id])
-    
-    unless reply.like_count.nil?
-      reply.like_count = reply.like_count + 1
-    else
-      reply.like_count = 0 + 1
-    end
-    reply.save
-    num = reply.like_count
-    render json: { count: num }
+    reply.update(like_count: reply.like_count + 1)
+    render json: { count: reply.like_count }
   end
-  
+
   def anti_count_update
     reply = Reply.find(params[:reply_id])
-    
-    unless reply.like_count.nil?
-      reply.unlike_count = reply.unlike_count + 1
-    else
-      reply.unlike_count = 0 + 1
-    end
-    reply.save
-    num = reply.unlike_count
-    render json: { count: num }
+    reply.update(unlike_count: reply.unlike_count + 1)
+    render json: { count: reply.unlike_count }
   end
 
   def delete
