@@ -30,32 +30,79 @@
 
   <!--article------------------------------------------------------------------>
   <div class="row" style="margin:0;">
+
     <% @posts.each do |post| %>
       <div class="col-md-3">
+
         <a href="/home/listpre/<%= post.id %>">
-          <div class="listbox" style="background-image:url(<%= post.img_url %>);">
-            <div class="listbox2">
+          <div class="listbox">
+            <h5 class="listbox_title"><%= post.title %></h5>
+            <h6 class="listbox_info"><%= post.written_at %></h6>
+            <div class="listbox2" style="background-image:url(<%= post.img_url %>);"></div>
 
-              <h5 class="listbox_title"><%= post.title %></h5>
-              <h6 class="listbox_info"><%= post.written_at %></h6>
-              <% 3.times do |idx| %>
-                <% unless post.replies[idx].nil? %>
-                  <%= post.replies[idx].like_count || 0 %>
-                  <%= post.replies[idx].location_text %>
-                <% end %>
-              <% end %>
-
-            </div>
           </div>
         </a>
 
+        <div style="position:absolute; top:-550px; left:40%">
+        <% 3.times do |idx| %>
+          <% unless post.replies[idx].nil? %>
+          <div class="bubble1">
+            <div>
+              <%= post.replies[idx].like_count || 0 %>
+            </div>
+          </div>
+          <% end %>
+        <% end %>
+        <% 3.times do |idx| %>
+          <% unless post.replies[idx].nil? %>
+            <%= post.replies[idx].location_text %>
+          <% end %>
+        <% end %>
+        </div>
 
-      </div>
+      </div> <!--col-md-3-->
     <% end %>
+
   </div>
 
 
+<style>
+  @keyframes circle {
+    from { transform:rotate(0deg); }
+    to { transform:rotate(360deg); }
+  }
+  @keyframes inner-circle {
+    from { transform:rotate(0deg); }
+    to { transform:rotate(-360deg); }
+  }
+
+  .bubble1 {
+    position:absolute;
+    width:100px;
+    height:100px;
+    margin: 20px auto 0;
+    background:pink;
+    border-radius:50%;
+    border:3px solid black;
+    color:black;
+    font-size:30px;
+    line-height:100px;
+    animation: circle 10s linear infinite;
+    transform-origin:50% 170px;
+    text-align:center;
+    opacity:0.5;
+  }
+  .bubble1 > div {
+    animation: inner-circle 10s linear infinite;
+  }
+  .listbox:hover .bubble1 {
+    opacity:1;
+  }
+</style>
+
+
 </div><!--white_bg-->
+
 
 <div class="clock" id="clockbox"></div>
 
