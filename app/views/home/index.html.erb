@@ -3,19 +3,67 @@
   body{
     height:100vh;
     overflow-y:hidden;
-    /*background:#ffc0cb;*/
+    background:#ffc0cb;
   }
 </style>
 
-<a href="/home/index"><div class="home_img" style="top:40px;height:70px;"> </div></a>
+<a href="/home/login"><div class="index_logo"></div></a>
 
-<div class="white_bg" style="background:none">
-  <div class="machine">
-    <div class="clock" id="clockbox"></div>
-    <img class="lever" src="/sources/lever2.png">
+<!--------------- CONTENT ----------------------------------------------------->
+
+<div class="white_bg">
+  <div class="row">
+    <div class="col-md-1"></div>
+
+    <div class="col-md-2">
+      <div class="machine">
+        <div class="machine_name machine_name2">정치</div>
+        <img class="lever" data-toggle="modal" data-target=".bs-example-modal-sm" src="/sources/lever2.png">
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="machine">
+        <div class="machine_name machine_name2">경제</div>
+        <img class="lever lever_none" data-toggle="modal" data-target=".bs-example-modal-sm" src="/sources/lever2.png">
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="machine">
+        <div class="machine_name">과학</div>
+        <img class="lever lever_working" src="/sources/lever2.png">
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="machine">
+        <div class="machine_name machine_name2">사회</div>
+        <img class="lever lever_none" data-toggle="modal" data-target=".bs-example-modal-sm" src="/sources/lever2.png">
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <div class="machine">
+        <div class="machine_name machine_name2">스포츠</div>
+        <img class="lever lever_none" data-toggle="modal" data-target=".bs-example-modal-sm" src="/sources/lever2.png">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clock" id="clockbox"></div>
+
+<!----------- service coming soon -------------------------------->
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="lever_alert">
+      COMING SOON. . .
+    </div>
   </div>
 </div>
 
+
+<!--------------- SCRIPT ----------------------------------------------------->
 <!-- date&time -->
 <script>
   tday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
@@ -65,7 +113,7 @@
 
   var transitionEvent = whichTransitionEvent();
 
-  $(".lever").click(function(){
+  $(".lever_working").click(function(){
     $(this).addClass("animate");
     $(this).one(transitionEvent,
                 function(event) {
@@ -74,4 +122,9 @@
       // $(this).removeClass("animate");
     });
   });
+
+
+  function lever_none() {
+      alert("coming soon");
+  }
 </script>
