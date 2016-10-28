@@ -1,46 +1,54 @@
 <script type="text/javascript">
+var fadeInImg = function(_this, id) {
+  var id = $(_this).attr("id");
+  $(".article_image").hide();
+  $("#gum_" + id).fadeIn();
+};
+
+var fadeOutImg = function(_this, id) {
+  var id = $(_this).attr("id");
+  $("#gum_" + id).hide();
+  var it = $("#gum" + id).attr("status");
+  $(".article_image").fadeIn();
+  if (it == "in"){
+    $("#gum_" + id).fadeIn();
+  };
+}
+
 $(document).ready(function(){
-    // $("#myModalLabel1").change(function(){
-    //   alert("aaa");
-    // });
+  $(".span_block").click(function(){
+    var block = $(this).attr("id");
+    $(".location_input").empty('');
+    $(".location_input").attr("value", block);
+  });
 
-    $(".span_block").click(function(){
-        var block = $(this).attr("id");
-        // alert(block);
-        $(".location_input").empty('');
-        $(".location_input").attr("value", block);
-    });
+  $(".ggum_ddak_ji").hover(function(){
+    fadeInImg(this);
+  }, function() {
+    fadeOutImg(this);
+  });
 
-    $(".ggum_ddak_ji").hover(function(){
-        var id = $(this).attr("id");
-    });
 
-    $(".ggum_ddak_ji").click(function(){
-        var id = $(this).attr("id");
-        $("#gum_" + id).fadeToggle();
-    });
+  $(".ggum_ddak_ji").click(function(){
+    fadeInImg(this);
+    // $("#gum_" + id).hide().attr("status", "in");
+    // $(".article_image").fadeIn();
+    // var sid = $(_this).attr("id");
+    // $("#gum_" + sid).fadeIn();
+  });
 
-    $(".most_best").hover(function(){
-        var id = $(this).attr("id");
-        $(".article_image").hide();
-        $("#gum_" + id).fadeIn();
-        $(".ggum_ddak_ji").click(function(){
-            $("#gum_" + id).hide().attr("status", "in");
-            $(".article_image").fadeIn();
-            var sid = $(this).attr("id");
-            $("#gum_" + sid).fadeIn();
-        })
-    }, function(){
-        var id = $(this).attr("id");
-        $("#gum_" + id).hide();
-        var it = $("#gum" + id).attr("status");
-        // alert(it);
-        $(".article_image").fadeIn();
-        if (it == "in"){
-            $("#gum_" + id).fadeIn();
-        };
-
-    });
+  // $(".most_best").hover(function(){
+  //   fadeInImg(this)
+  // }, function(){
+  //   var id = $(this).attr("id");
+  //   $("#gum_" + id).hide();
+  //   var it = $("#gum" + id).attr("status");
+  //   // alert(it);
+  //   $(".article_image").fadeIn();
+  //   if (it == "in"){
+  //     $("#gum_" + id).fadeIn();
+  //   };
+  // });
 
 
     // $("#replySubmit").click(function(){
@@ -66,59 +74,59 @@ $(document).ready(function(){
     //     })
     // });
 
-    $(".likePost").click(function(){
-        var this_post = $(this);
-        var postId = this_post.attr("num");    // like button with attribute name of num="(this_post.id)"
-        var user_id = $("#userId").val();      // hidden type input with id="userId" value="(current_user.id)"
-        $.ajax({
-            method: "POST",
-            url: "/post/count_update",
-            data: {post_id: postId, user_id: user_id},
-            dataType: "json"
-        })
-        .done(function( json ) {
-            var updated_count = json.count;
-            $("#post_count").empty('');
-            $("#post_count").append(updated_count)
-        })
-    });
+  $(".likePost").click(function(){
+    var this_post = $(this);
+    var postId = this_post.attr("num");    // like button with attribute name of num="(this_post.id)"
+    var user_id = $("#userId").val();      // hidden type input with id="userId" value="(current_user.id)"
+    $.ajax({
+      method: "POST",
+      url: "/post/count_update",
+      data: {post_id: postId, user_id: user_id},
+      dataType: "json"
+    })
+    .done(function( json ) {
+      var updated_count = json.count;
+      $("#post_count").empty('');
+      $("#post_count").append(updated_count)
+    })
+  });
 
-    $(".likeReply").click(function(){
-        var this_reply = $(this);
-        var replyId = this_reply.attr("num");    // like button with attribute name of num="(this_reply.id)"
-        var user_id = $("#userId").val();        // hidden type input with id="userId" value="(current_user.id)"
-        $.ajax({
-            method: "POST",
-            url: "/reply/count_update",
-            data: {reply_id: replyId, user_id: user_id},
-            dataType: "json"
-        })
-        .done(function( json ) {
-            var updated_count = json.count;
-            $("#reply_count_" + replyId).empty('');
-            $("#reply_count_" + replyId).append(updated_count)
-        });
+  $(".likeReply").click(function(){
+    var this_reply = $(this);
+    var replyId = this_reply.attr("num");    // like button with attribute name of num="(this_reply.id)"
+    var user_id = $("#userId").val();        // hidden type input with id="userId" value="(current_user.id)"
+    $.ajax({
+      method: "POST",
+      url: "/reply/count_update",
+      data: {reply_id: replyId, user_id: user_id},
+      dataType: "json"
+    })
+    .done(function( json ) {
+      var updated_count = json.count;
+      $("#reply_count_" + replyId).empty('');
+      $("#reply_count_" + replyId).append(updated_count)
     });
+  });
 
-    $(".dislikeReply").click(function(){
-        var this_reply = $(this);
-        var replyId = this_reply.attr("num");    // like button with attribute name of num="(this_reply.id)"
-        var user_id = $("#userId").val();        // hidden type input with id="userId" value="(current_user.id)"
-        $.ajax({
-            method: "POST",
-            url: "/reply/anti_count_update",
-            data: {reply_id: replyId, user_id: user_id},
-            dataType: "json"
-        })
-        .done(function( json ) {
-            var updated_count = json.count;
-            if (updated_count < 5) {
-                $("#anti_count_" + replyId).empty('');
-                $("#anti_count_" + replyId).append(updated_count)
-            } else {
-                $(this_reply).parent().parent().remove();
-            }
-        });
+  $(".dislikeReply").click(function(){
+    var this_reply = $(this);
+    var replyId = this_reply.attr("num");    // like button with attribute name of num="(this_reply.id)"
+    var user_id = $("#userId").val();        // hidden type input with id="userId" value="(current_user.id)"
+    $.ajax({
+      method: "POST",
+      url: "/reply/anti_count_update",
+      data: {reply_id: replyId, user_id: user_id},
+      dataType: "json"
+    })
+    .done(function( json ) {
+      var updated_count = json.count;
+      if (updated_count < 5) {
+        $("#anti_count_" + replyId).empty('');
+        $("#anti_count_" + replyId).append(updated_count)
+      } else {
+        $(this_reply).parent().parent().remove();
+      }
     });
+  });
 });
 </script>
