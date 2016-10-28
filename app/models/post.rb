@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   has_many :viewcounts
   belongs_to :user
 
-  scope :replies_ordered, -> { includes(:replies).order('replies.like_count DESC') }
+  scope :replies_ordered, -> { includes(:replies).order(['posts.id ASC', 'replies.like_count DESC']) }
 
   def image_reply_length
     self.replies
