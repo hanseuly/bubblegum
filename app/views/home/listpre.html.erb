@@ -23,7 +23,8 @@
 
 <!-- TITLE --------------------------------------------------------------------->
     <div>
-      <h1 class="article_title"><%= @post.title %></h1><br>
+      <a href="/home/main/<%= @post.id %>"><h1 class="article_title"><%= @post.title %></h1></a> <br>
+      <style>.article_title:hover { color:white; }</style>
       <div class="col-md-6 mini_info"><%= @post.written_at %></div>
       <div class="col-md-6 mini_info" style="text-align:right">
         <img src="/sources/icon/icons-view2.png" class="mini_icon"> 조회수 &nbsp;<span class="mini_info2"><%= @view_count %></span>&nbsp;
@@ -35,7 +36,7 @@
 
     <div class="box_contents">
 
-        <h2>#태그1</h2><br>
+        <a href="/home/main/<%= @post.id %>"><h2>#태그1</h2></a><br>
 
           <% @replies.each do |reply| %>
           <div class="col-md-4">

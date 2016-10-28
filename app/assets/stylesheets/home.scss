@@ -41,6 +41,13 @@ a, a:hover, a:focus, a:active, a.active {
   text-decoration: none;
 }
 
+a {
+  color:black;
+}
+a:hover {
+  color:white;
+}
+
 .white_bg {
   background: white;
   width:100%;
@@ -539,6 +546,7 @@ input:-webkit-autofill {
   position:relative;
   margin:auto;
   margin-bottom:20px;
+  cursor:pointer;
 }
 .bubble2 div {
   width:100%;

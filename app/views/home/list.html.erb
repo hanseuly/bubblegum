@@ -49,11 +49,7 @@
               <%= post.image_reply_length %>
             </div>
           </div>
-<<<<<<< HEAD
-          <% end %>
-        <% end %>
         </div>
-
 
         <div class="article_tags">
           <% 3.times do |idx| %>
@@ -62,14 +58,12 @@
                 #<%= post.replies[idx].location_text %>
               <% end %>
             </div>
-=======
+
         <% 3.times do |idx| %>
           <% unless post.replies[idx].nil? %>
             <%= post.replies[idx].location_text %>
->>>>>>> 388354d6767200b43801c66c63af2b51b56fc02d
           <% end %>
         </div>
-
 
 
       </div> <!--col-md-3-->
@@ -148,7 +142,7 @@
   }
 
   window.onload=function(){
-  GetClock();
-  setInterval(GetClock,1000);
+    GetClock();
+    setInterval(GetClock,1000);
   }
 </script>
