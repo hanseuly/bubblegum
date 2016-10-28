@@ -3,23 +3,23 @@ $(document).ready(function(){
     // $("#myModalLabel1").change(function(){
     //   alert("aaa");
     // });
-    
+
     $(".span_block").click(function(){
         var block = $(this).attr("id");
         // alert(block);
         $(".location_input").empty('');
         $(".location_input").attr("value", block);
     });
-    
+
     $(".ggum_ddak_ji").hover(function(){
         var id = $(this).attr("id");
     });
-    
+
     $(".ggum_ddak_ji").click(function(){
         var id = $(this).attr("id");
         $("#gum_" + id).fadeToggle();
     });
-    
+
     $(".most_best").hover(function(){
         var id = $(this).attr("id");
         $(".article_image").hide();
@@ -39,12 +39,12 @@ $(document).ready(function(){
         if (it == "in"){
             $("#gum_" + id).fadeIn();
         };
-        
+
     });
-    
-    
+
+
     // $("#replySubmit").click(function(){
-        
+
     //     $.ajax({
     //         method: "POST",
     //         url: "/reply/create",
@@ -62,10 +62,10 @@ $(document).ready(function(){
     //         var current_reply = json.current_reply;
     //         var current_post = json.current_post;
     //         // var current_user = json.current_user;
-            
+
     //     })
     // });
-    
+
     $(".likePost").click(function(){
         var this_post = $(this);
         var postId = this_post.attr("num");    // like button with attribute name of num="(this_post.id)"
@@ -82,7 +82,7 @@ $(document).ready(function(){
             $("#post_count").append(updated_count)
         })
     });
-    
+
     $(".likeReply").click(function(){
         var this_reply = $(this);
         var replyId = this_reply.attr("num");    // like button with attribute name of num="(this_reply.id)"
@@ -99,7 +99,7 @@ $(document).ready(function(){
             $("#reply_count_" + replyId).append(updated_count)
         });
     });
-    
+
     $(".dislikeReply").click(function(){
         var this_reply = $(this);
         var replyId = this_reply.attr("num");    // like button with attribute name of num="(this_reply.id)"
@@ -112,8 +112,12 @@ $(document).ready(function(){
         })
         .done(function( json ) {
             var updated_count = json.count;
-            $("#anti_count_" + replyId).empty('');
-            $("#anti_count_" + replyId).append(updated_count)
+            if (updated_count < 5) {
+                $("#anti_count_" + replyId).empty('');
+                $("#anti_count_" + replyId).append(updated_count)
+            } else {
+                $(this_reply).parent().parent().remove();
+            }
         });
     });
 });
