@@ -47,8 +47,8 @@ a, a:hover, a:focus, a:active, a.active {
   height:70vh;
   top:15vh;
   position:absolute;
-  border-top: 5px solid black;
-  border-bottom: 5px solid black;
+  // border-top: 5px solid black;
+  // border-bottom: 5px solid black;
 }
 
 /* Change the white to any color ;) */
@@ -342,8 +342,12 @@ div.a:hover .a2 {
 
 .machine_up {
   position:absolute;
-  top:0px;
-  right:0px;
+  top:-30px;
+  left:50%;
+  -ms-transform: translateX(-50%); /* IE 9 */
+  -webkit-transform: translateX(-50%); /* Chrome, Safari, Opera */
+  -o-transfrom: translateX(-50%);
+  transform: translateX(-50%);
   width:25px;
   height:25px;
   background-image:url(/sources/icon/icon-update.png);
@@ -400,7 +404,8 @@ div.a:hover .a2 {
 .listbox {
   margin:auto;
   position:relative;
-  margin-top:25vh;
+  // margin-top:25vh;
+  top:-50vh;
   width:250px;
   height:250px;
   // background: $main_color1;
@@ -439,6 +444,20 @@ div.a:hover .a2 {
   position:relative;
   top:70px;
   font-size:7pt;
+}
+
+.list_name {
+  position:absolute;
+  text-align:center;
+  width:50%;
+  font-size:25pt;
+  font-weight:700;
+  top:30px;
+  left:50%;
+  -ms-transform: translateX(-50%); /* IE 9 */
+  -webkit-transform: translateX(-50%); /* Chrome, Safari, Opera */
+  -o-transfrom: translateX(-50%);
+  transform: translateX(-50%);
 }
 
 /* CONTENT -------------------------------------------------------------------*/
