@@ -10,7 +10,7 @@ class HomeController < ApplicationController
   end
 
   def list
-    @posts = Post.all
+    @posts = Post.all.replies_ordered
   end
 
   def howto

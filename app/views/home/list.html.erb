@@ -72,11 +72,19 @@
       <a href="/home/listpre/<%= post.id %>">
         <div class="listbox" style="background-image:url(<%= post.img_url %>);">
           <div class="listbox2">
+
             <h5 class="listbox_title"><%= post.title %></h5>
             <h6 class="listbox_info"><%= post.written_at %></h6>
           </div>
         </div>
       </a>
+      <% 3.times do |idx| %>
+        <% unless post.replies[idx].nil? %>
+          <%= post.replies[idx].like_count || 0 %>
+          <%= post.replies[idx].location_text %>
+        <% end %>
+      <% end %>
+
     </div>
   <% end %>
   <!--<div class="col-md-3">-->
