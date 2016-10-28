@@ -10,9 +10,6 @@
 
 
 <!--CONTENT ------------------------------------------------------------------->
-
-
-
 <div class="white_bg">
 
   <!--Background--------------------------------------------------------------->
@@ -24,7 +21,7 @@
     <div class="col-md-2">
       <div class="machine">
         <div class="machine_name">과학</div>
-        <img class="lever lever_working" src="/sources/lever2.png">
+        <img class="lever" style="cursor:default;" src="/sources/lever2.png">
       </div>
     </div>
     <div class="col-md-2"></div>
@@ -32,26 +29,34 @@
   </div>
 
   <!--article------------------------------------------------------------------>
-
-
   <div class="row" style="margin:0;">
     <% @posts.each do |post| %>
       <div class="col-md-3">
         <a href="/home/listpre/<%= post.id %>">
           <div class="listbox" style="background-image:url(<%= post.img_url %>);">
             <div class="listbox2">
+
               <h5 class="listbox_title"><%= post.title %></h5>
               <h6 class="listbox_info"><%= post.written_at %></h6>
+              <% 3.times do |idx| %>
+                <% unless post.replies[idx].nil? %>
+                  <%= post.replies[idx].like_count || 0 %>
+                  <%= post.replies[idx].location_text %>
+                <% end %>
+              <% end %>
+
             </div>
           </div>
         </a>
+
+
       </div>
     <% end %>
   </div>
 
 
+</div><!--white_bg-->
 
-</div>
 <div class="clock" id="clockbox"></div>
 
 
