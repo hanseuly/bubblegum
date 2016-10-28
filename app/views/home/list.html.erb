@@ -44,15 +44,11 @@
         </a>
 
         <div style="position:absolute; top:-550px; left:40%">
-        <% 3.times do |idx| %>
-          <% unless post.replies[idx].nil? %>
           <div class="bubble1">
             <div>
-              <%= post.replies[idx].like_count || 0 %>
+              <%= post.image_reply_length %>
             </div>
           </div>
-          <% end %>
-        <% end %>
         <% 3.times do |idx| %>
           <% unless post.replies[idx].nil? %>
             <%= post.replies[idx].location_text %>

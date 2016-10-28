@@ -1,15 +1,20 @@
 class Post < ActiveRecord::Base
-    has_many :replies
-    has_many :viewcounts
-    belongs_to :user
+  has_many :replies
+  has_many :viewcounts
+  belongs_to :user
 
-    scope :replies_ordered, -> { includes(:replies).order('replies.like_count DESC') }
+  scope :replies_ordered, -> { includes(:replies).order('replies.like_count DESC') }
+
+  def image_reply_length
+    self.replies
+      .select {|item| item.option_num == 1}
+      .length
+  end
 
 
     def self.create_permitted_attr(exclude)
-
-        x = ['id', 'created_at', 'updated_at'] + exclude
-        return Post.attribute_names - x
+      x = ['id', 'created_at', 'updated_at'] + exclude
+      return Post.attribute_names - x
     end
 
     def content_to_split_span_block
