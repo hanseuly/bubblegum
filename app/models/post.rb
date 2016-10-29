@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
 
   def image_reply_length
     self.replies
-      .select {|item| item.option_num == 1}
+      .select {|item| item.option_num == 0}
       .length
   end
 
