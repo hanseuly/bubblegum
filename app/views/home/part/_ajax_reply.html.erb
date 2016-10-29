@@ -30,7 +30,21 @@ $(document).ready(function(){
 
 
   $(".ggum_ddak_ji").click(function(){
-    fadeInImg(this);
+    var text = $(this).text();
+    var post_id = window.location.pathname.split('/').pop();
+    $.ajax({
+      method: 'get',
+      data: {query: text, post_id: post_id},
+      url: '/home/ggum',
+      success: function(data) {
+        console.log(data);
+      },
+      error: function(err) {
+        alert('문제가 있습니다.');
+      }
+    })
+    // fadeInImg(this, 'clicked');
+    // hideClickedImage(this);
     // $("#gum_" + id).hide().attr("status", "in");
     // $(".article_image").fadeIn();
     // var sid = $(_this).attr("id");

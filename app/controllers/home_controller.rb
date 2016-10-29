@@ -30,6 +30,14 @@ class HomeController < ApplicationController
   def main_pre
   end
 
+  def ggum
+    post = Post.find(params[:post_id])
+    ggum = post.replies
+      .where(location_text: params[:query])
+      .order('like_count DESC')
+    render json: ggum
+  end
+
   def main
     @post = Post.last
     unless params[:id].nil?
