@@ -1,6 +1,14 @@
-<%= render partial: '/home/part/nav.html.erb' %>
+<style>
+  body{
+    background:#ffc0cb;
+  }
+</style>
 
-<div class="row" style="margin-top:100px">
+<div style="position:relative; margin:auto; text-align:center; top:20px">
+  <a href="/home/index"><img src="/sources/logo.png" style="height:40px;"></a>
+</div>
+
+<div class="row" style="margin-top:70px">
   <!-- reporter ------------------------------------------------------------------>
     <div class="col-md-2" style="text-align:center">
       <div class="reporter_image">
@@ -15,35 +23,59 @@
 
 <!-- TITLE --------------------------------------------------------------------->
     <div>
-      <h1 class="article_title"><%= @post.title %></h1><br>
+      <a href="/home/main/<%= @post.id %>"><h1 class="article_title"><%= @post.title %></h1></a> <br>
+      <style>.article_title:hover { color:white; }</style>
       <div class="col-md-6 mini_info"><%= @post.written_at %></div>
       <div class="col-md-6 mini_info" style="text-align:right">
-        <img src="/sources/icon/icon-view.png" class="mini_icon"> 조회수 &nbsp;<span class="mini_info2"><%= @view_count %></span>&nbsp;
-        <img src="/sources/icon/icon-reply.png" class="mini_icon"> 버블 &nbsp;<span class="mini_info2"><%= @post.replies.count %></span>&nbsp;
-        <img src="/sources/icon/icon-gdj.png" class="mini_icon"> 껌딱지 &nbsp;<span class="mini_info2"><%= @post.ggum_ddak_ji_percentage %></span>%
+        <img src="/sources/icon/icons-view2.png" class="mini_icon"> 조회수 &nbsp;<span class="mini_info2"><%= @view_count %></span>&nbsp;
+        <img src="/sources/icon/icons-reply2.png" class="mini_icon"> 버블 &nbsp;<span class="mini_info2"><%= @post.replies.count %></span>&nbsp;
+        <img src="/sources/icon/icons-gdj2.png" class="mini_icon"> 껌딱지 &nbsp;<span class="mini_info2"><%= @post.ggum_ddak_ji_percentage %></span>%
       </div>
       <input type="hidden" id="userId" value="2">
     </div>
 
     <div class="box_contents">
-      <div class="row" id="floatingstage" style="height:70vh">
-        <% @replies.each do |reply| %>
-        <a href="/home/main/<%= @post.id %>">
-          <div class="a" style="background-image: url('<%= reply.img_url %>');">
-            <div class="a2">
-              <div class="a_article"><%= reply.content %></div>
+
+        <a href="/home/main/<%= @post.id %>"><h2>#태그1</h2></a><br>
+
+          <% @replies.each do |reply| %>
+          <div class="col-md-4">
+            <div class="bubble2" style="background-image: url('<%= reply.img_url %>');" data-toggle="modal" data-target="#myModal">
+              <!-- <a href="/home/main/<%= @post.id %>"> -->
+                <div><%= reply.content %></div>
+              <!-- </a> -->
             </div>
           </div>
-        </a>
+
+          <!-- Modal -->
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">#태그</h4>
+                </div>
+                <div class="modal-body">
+                  이미지<br>
+                  유저아이디<br>
+                  댓글내용(text)
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
         <% end %>
 
-        <div style="width:50%; margin:auto;">
+        <!-- <div style="width:50%; margin:auto;">
           <a href="/home/main/<%= @post.id %>"><img style="width:100%" src="<%= @post.img_url %>"></a>
-        </div>
+        </div> -->
 
 
       </div>
-    </div>
 
   </div> <!--col-md-8-->
 
@@ -55,39 +87,3 @@
 <style>
 
 </style>
-
-
-<script>
-$(document).ready(function(){
-    $('.a').each(function(){ animateDiv($(this)); });
-});
-
-function makeNewPosition(){
-    var h = $('#floatingstage').height()-50;
-    var w = $('#floatingstage').width()-50;
-    // var h = $(window).height() - 300;
-    // var w = $(window).width() - 300;
-    var nh = Math.floor(Math.random() * h);
-    var nw = Math.floor(Math.random() * w);
-    return [nh,nw];
-}
-
-function animateDiv(ele){
-    var newq = makeNewPosition();
-    var oldq = ele.offset();
-    var speed = calcSpeed([oldq.top, oldq.left], newq);
-    ele.animate({ top: newq[0], left: newq[1] }, speed, function(){
-      animateDiv(ele);
-    });
-};
-
-function calcSpeed(prev, next) {
-    var x = Math.abs(prev[1] - next[1]);
-    var y = Math.abs(prev[0] - next[0]);
-    var greatest = x > y ? x : y;
-    var speedModifier = 0.01;
-    var speed = Math.ceil(greatest/speedModifier);
-    return speed;
-}
-
-</script>

@@ -41,6 +41,13 @@ a, a:hover, a:focus, a:active, a.active {
   text-decoration: none;
 }
 
+a {
+  color:black;
+}
+a:hover {
+  color:white;
+}
+
 .white_bg {
   background: white;
   width:100%;
@@ -58,50 +65,50 @@ input:-webkit-autofill {
 }
 
 
-
-/* list pre : image bubble ******************/
-div.a {
-  width:250px;
-  height:250px;
-  display:inline-block;
-  border:5px solid black;
-  background-color: rgba(255, 255, 255, 0.5);
-  /*background-image: url(/sources/news/alphago.jpg);*/
-  background-size:cover;
-  background-position:center center;
-  position:fixed;
-  border-radius:50%;
-  // box-shadow:10px 10px 10px rgba(0,0,0, 0.5);
-  /*opacity: 0.8;
-  filter: alpha(opacity=80); /* For IE8 and earlier*/
-}
-div.a:hover {
-  // background-image: none !important;
-  // border:5px solid black;
-  opacity:1;
-  transition: all .25s ease;
-}
-div.a2 {
-  display:none;
-  background: rgba(255,192,203, 0.8);
-  width:240px;
-  height:240px;
-  position:absolute;
-  border-radius:50%;
-  text-align:center;
-  color:black;
-}
-
-div.a:hover .a2 {
-  display:block;
-  transition: all .25s ease;
-}
-
-.a_article{
-  font-size:15pt;
-  top:100px;
-  position:relative;
-}
+//
+// /* list pre : image bubble ******************/
+// div.a {
+//   width:250px;
+//   height:250px;
+//   display:inline-block;
+//   border:5px solid black;
+//   background-color: rgba(255, 255, 255, 0.5);
+//   /*background-image: url(/sources/news/alphago.jpg);*/
+//   background-size:cover;
+//   background-position:center center;
+//   position:fixed;
+//   border-radius:50%;
+//   // box-shadow:10px 10px 10px rgba(0,0,0, 0.5);
+//   /*opacity: 0.8;
+//   filter: alpha(opacity=80); /* For IE8 and earlier*/
+// }
+// div.a:hover {
+//   // background-image: none !important;
+//   // border:5px solid black;
+//   opacity:1;
+//   transition: all .25s ease;
+// }
+// div.a2 {
+//   display:none;
+//   background: rgba(255,192,203, 0.8);
+//   width:240px;
+//   height:240px;
+//   position:absolute;
+//   border-radius:50%;
+//   text-align:center;
+//   color:black;
+// }
+//
+// div.a:hover .a2 {
+//   display:block;
+//   transition: all .25s ease;
+// }
+//
+// .a_article{
+//   font-size:15pt;
+//   top:100px;
+//   position:relative;
+// }
 
 
 
@@ -482,7 +489,7 @@ div.a:hover .a2 {
 .reporter_image{
   width:100px;
   height:100px;
-  border:5px solid white;
+  // border:5px solid white;
   margin:auto;
   border-radius: 50%;
   background-image:url(/sources/profile-3.png);
@@ -525,8 +532,37 @@ div.a:hover .a2 {
 
 .box_contents {
   margin-top:50px;
-  border-top : 2px solid black;
+  border-top : 3px solid black;
   padding-top: 30px;
+}
+
+.bubble2{
+  width:250px;
+  height:250px;
+  border-radius:50%;
+  background-size:cover;
+  background-position:center center;
+  border:5px solid black;
+  position:relative;
+  margin:auto;
+  margin-bottom:20px;
+  cursor:pointer;
+}
+.bubble2 div {
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  background:white;
+  color:black;
+  font-size:20pt;
+  text-align:center;
+  line-height:240px;
+  opacity:0;
+  transition: all .2s ease-in-out;
+}
+.bubble2:hover div {
+  opacity:1;
+  transition: all .5s ease;
 }
 
 

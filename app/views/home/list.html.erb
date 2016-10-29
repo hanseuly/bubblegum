@@ -49,12 +49,22 @@
               <%= post.image_reply_length %>
             </div>
           </div>
+        </div>
+
+        <div class="article_tags">
+          <% 3.times do |idx| %>
+            <div style="">
+              <% unless post.replies[idx].nil? %>
+                #<%= post.replies[idx].location_text %>
+              <% end %>
+            </div>
+
         <% 3.times do |idx| %>
           <% unless post.replies[idx].nil? %>
             <%= post.replies[idx].location_text %>
           <% end %>
-        <% end %>
         </div>
+
 
       </div> <!--col-md-3-->
     <% end %>
@@ -94,6 +104,9 @@
   .listbox:hover .bubble1 {
     opacity:1;
   }
+  .article_tags {
+    position:absolute; top:-20vh; width:30%; left:50%; transform:translateX(-50%); text-align:center; font-size:20pt;
+  }
 </style>
 
 
@@ -129,7 +142,7 @@
   }
 
   window.onload=function(){
-  GetClock();
-  setInterval(GetClock,1000);
+    GetClock();
+    setInterval(GetClock,1000);
   }
 </script>
