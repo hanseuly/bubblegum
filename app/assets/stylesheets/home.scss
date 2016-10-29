@@ -590,6 +590,9 @@ input:-webkit-autofill {
 	display: block;
 	padding-top: 100%; 	/* initial ratio of 1:1*/
 }
+.block-span {
+  display: block;
+}
 
 .reply_gum1_image {
   position:relative;
@@ -613,7 +616,7 @@ input:-webkit-autofill {
   margin-top:15px;
   margin-bottom:15px;
   padding:5px;
-  padding-bottom:10px;
+  padding-bottom: 30px;
 }
 
 .reply_gum2 {

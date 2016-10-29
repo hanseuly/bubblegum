@@ -1,43 +1,211 @@
 <script type="text/javascript">
-var fadeInImg = function(_this, id) {
+var likeContainer = function(elem) {
+  var likeContainer = $('<div/>')
+    .css({'float': 'right'});
+
+  var likeBtn = $('<span/>')
+    .addClass('glyphicon glyphicon-heart likeReply')
+    .css({'cursor':' pointer', 'top': '2px'})
+    .attr('aria-hidden', 'true')
+    .attr('num', elem.id);
+
+  var likeNum = $('<span/>')
+    .attr('id', 'reply_count_' + elem.id)
+    .html('&nbsp' + elem.like_count + '&nbsp');
+
+  var dislikeBtn = $('<span/>')
+    .addClass('glyphicon glyphicon-remove dislikeReply')
+    .css({'cursor':' pointer', 'top': '2px'})
+    .attr('aria-hidden', 'true')
+    .attr('num', elem.id);
+
+  var disLikeNum =  $('<span/>')
+    .attr('id', 'anti_count_' + elem.id)
+    .html('&nbsp' + elem.unlike_count + '&nbsp');
+
+  return likeContainer.append(likeBtn)
+    .append(likeNum)
+    .append(dislikeBtn)
+    .append(disLikeNum)
+    .append("<br class= 'clear'/>")
+}
+
+var outerContainer = function(elem) {
+  return $('<div/>')
+    .addClass('reply_gum')
+    .attr('id', 'gum_' + elem.id);
+}
+var userNameSpan = function(elem) {
+  return $('<span/>')
+    .addClass('reply_username')
+    .text(elem.user_name);
+}
+
+var imageBubble = function(elem) {
+
+  var container = outerContainer(elem);
+
+  var image =  $('<div/>',{
+    class: 'reply_gum1_image',
+  }).css({
+    'background-image': 'url(' +  elem.img_url + ')'
+  })
+
+  var userName = userNameSpan(elem);
+  var content = $('<br/>')
+    .text(elem.content);
+
+  var likes = likeContainer(elem);
+  return container.append(userName)
+    .append(image)
+    .append(content)
+    .append(likes);
+}
+var infoBubble = function(elem) {
+  var container = outerContainer(elem);
+  var reply_gum2 = $('<div />', {
+    class: 'reply_gum2'
+  });
+  reply_gum2.append(
+    $('<div/>', {
+      class: 'reply_gum2_text'
+    }).html(userNameSpan(elem))
+    .append(' |')
+    .append(
+      $('<span/>')
+        .text(elem.content)
+        .addClass('block-span')
+    )
+  );
+  var likes = likeContainer(elem);
+  return container.append(reply_gum2)
+    .append(likes);
+
+}
+var linkBubble = function(elem) {
+  var container = outerContainer(elem);
+  var reply_gum2 = $('<div />', {
+    class: 'reply_gum2'
+  });
+  reply_gum2.append(
+    $('<div/>', {
+      class: 'reply_gum2_text'
+    }).html(userNameSpan(elem))
+    .append(' |')
+    .append(
+      $('<span />')
+        .text(elem.content)
+        .addClass('block-span')
+    )
+  )
+  .append(
+    $('<a />', {
+      'href': 'http://' + elem.link,
+      'target': '_blank'
+    }).append(
+      $('<div />', {
+        'class': 'reply_gum3_link'
+      })
+    )
+  )
+  var likes = likeContainer(elem);
+  return container.append(reply_gum2)
+    .append(likes);
+
+}
+var blahBubble = function(elem) {
+  var container = outerContainer(elem);
+  var reply_gum2 = $('<div />', {
+    class: 'reply_gum2'
+  });
+  reply_gum2.append(
+    $('<div/>', {
+      class: 'reply_gum2_text'
+    }).html(userNameSpan(elem))
+    .append(' |')
+    .append(
+      $('<span/>')
+        .text(elem.content)
+        .addClass('block-span')
+    )
+  );
+  var likes = likeContainer(elem);
+  return container.append(reply_gum2)
+    .append(likes);
+}
+
+var fadeInImg = function(_this, evt) {
   var id = $(_this).attr("id");
   $(".article_image").hide();
   $("#gum_" + id).fadeIn();
+  if (evt == 'clicked') {
+    $("#gum_" + id).addClass('clicked')
+  }
 };
 
-var fadeOutImg = function(_this, id) {
+var fadeOutImg = function(_this) {
   var id = $(_this).attr("id");
-  $("#gum_" + id).hide();
-  var it = $("#gum" + id).attr("status");
-  $(".article_image").fadeIn();
-  if (it == "in"){
-    $("#gum_" + id).fadeIn();
-  };
+  var ggum = "#gum_" + id;
+  var it = $(ggum).attr("status");
+
+  if ($(ggum).hasClass('clicked')) {
+
+  } else {
+    $(ggum).hide();
+    $(".article_image").fadeIn();
+    if (it == "in"){
+      $(ggum).fadeIn();
+    };
+  }
+}
+
+var hideClickedImage = function(_this) {
+  var id = 'gum_' + $(_this).attr("id");
+  var ggum = "#gum_" + id;
+  $('.clicked').each(function(idx, elem){
+    if(id != $(elem).attr('id')) {
+      $(elem).hide();
+      $(elem).removeClass('clicked');
+    }
+  });
 }
 
 $(document).ready(function(){
-  $(".span_block").click(function(){
-    var block = $(this).attr("id");
-    $(".location_input").empty('');
-    $(".location_input").attr("value", block);
-  });
+  // $(".span_block").click(function(){
+  //   var block = $(this).attr("id");
+  //   $(".location_input").empty('');
+  //   $(".location_input").attr("value", block);
+  // });
+  //
+  // $(".ggum_ddak_ji").hover(function(){
+  //   fadeInImg(this);
+  // }, function() {
+  //   fadeOutImg(this);
+  // });
 
-  $(".ggum_ddak_ji").hover(function(){
-    fadeInImg(this);
-  }, function() {
-    fadeOutImg(this);
-  });
 
-
-  $(".ggum_ddak_ji").click(function(){
+  $(".ggum_ddak_ji").click(function(e){
     var text = $(this).text();
     var post_id = window.location.pathname.split('/').pop();
+    $(".reply_gum").remove();
+
     $.ajax({
-      method: 'get',
+      method: 'post',
       data: {query: text, post_id: post_id},
       url: '/home/ggum',
       success: function(data) {
-        console.log(data);
+        data.forEach(function(elem) {
+          if (elem.option_num == 0) {
+            $('.col-md-5').append(imageBubble(elem));
+          } else if (elem.option_num == 1) {
+            $('.col-md-5').append(infoBubble(elem));
+          } else if (elem.option_num == 2) {
+            $('.col-md-5').append(linkBubble(elem));
+          } else if (elem.option_num == 3) {
+            $('.col-md-5').append(blahBubble(elem));
+
+          }
+        })
       },
       error: function(err) {
         alert('문제가 있습니다.');
@@ -105,9 +273,10 @@ $(document).ready(function(){
     })
   });
 
-  $(".likeReply").click(function(){
+  $(document).on('click', '.likeReply', function(){
     var this_reply = $(this);
     var replyId = this_reply.attr("num");    // like button with attribute name of num="(this_reply.id)"
+    console.log(replyId);
     var user_id = $("#userId").val();        // hidden type input with id="userId" value="(current_user.id)"
     $.ajax({
       method: "POST",
@@ -118,11 +287,11 @@ $(document).ready(function(){
     .done(function( json ) {
       var updated_count = json.count;
       $("#reply_count_" + replyId).empty('');
-      $("#reply_count_" + replyId).append(updated_count)
+      $("#reply_count_" + replyId).append('&nbsp;' + updated_count + '&nbsp;');
     });
   });
 
-  $(".dislikeReply").click(function(){
+  $(document).on('click', '.dislikeReply', function(){
     var this_reply = $(this);
     var replyId = this_reply.attr("num");    // like button with attribute name of num="(this_reply.id)"
     var user_id = $("#userId").val();        // hidden type input with id="userId" value="(current_user.id)"
@@ -136,7 +305,7 @@ $(document).ready(function(){
       var updated_count = json.count;
       if (updated_count < 5) {
         $("#anti_count_" + replyId).empty('');
-        $("#anti_count_" + replyId).append(updated_count)
+        $("#anti_count_" + replyId).append('&nbsp;' + updated_count + '&nbsp;');
       } else {
         $(this_reply).parent().parent().remove();
       }

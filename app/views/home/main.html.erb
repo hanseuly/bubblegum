@@ -48,6 +48,9 @@
             color: #ff5d76;
             /*font-size: 18px;*/
           }
+          .clear {
+              clear: both;
+          }
         </style>
 
         <div class="col-md-5" style="margin:none; padding:20px 30px">
@@ -55,66 +58,6 @@
           <div class="article_image" style="background-image:url(<%= @post.img_url %>);"></div>
 
 
-<!--<a style="cursor:pointer;" class="btn btn-info btn-sm likeReply" num="1">like</a>-->
-          <% @post.replies.reorder("like_count desc").each do |reply| %>
-            <% if reply.option_num == 0 %>
-              <!-- reply1_image -->
-              <div class="reply_gum" id="gum_<%= reply.id %>" style="display: none;">
-                <div class="reply_gum1_image" style="background-image:url('<%= reply.img_url %>');"></div>
-                <span class="reply_username"><%= reply.user_name %> |</span><br><%= reply.content %><br>
-                <div style="float:right">
-                  <span class="glyphicon glyphicon-heart likeReply" style="cursor:pointer; top:2px" aria-hidden="true" num="<%= reply.id %>"></span> <span id="reply_count_<%= reply.id %>"><%= reply.like_count %></span>
-                  <span class="glyphicon glyphicon-remove dislikeReply" style="cursor:pointer; top:2px" aria-hidden="true" num="<%= reply.id %>"></span> <span id="anti_count_<%= reply.id %>"><%= reply.unlike_count %></span>
-                </div><br>
-              </div>
-
-            <% elsif reply.option_num == 1 %>
-              <!-- reply2&4_information/blahblah-->
-              <div class="reply_gum" id="gum_<%= reply.id %>" style="display: none;">
-                <div class="reply_gum2">
-                  <div class="reply_gum2_text">
-                    <span class="reply_username"><%= reply.user_name %> |</span><br><%= reply.content %>
-                  </div>
-                </div>
-                <div style="float:right">
-                  <span class="glyphicon glyphicon-heart likeReply" style="cursor:pointer; top:2px" aria-hidden="true" num="<%= reply.id %>"></span> <span id="reply_count_<%= reply.id %>"><%= reply.like_count %></span>
-                  <span class="glyphicon glyphicon-remove dislikeReply" style="cursor:pointer; top:2px" aria-hidden="true" num="<%= reply.id %>"></span> <span id="anti_count_<%= reply.id %>"><%= reply.unlike_count %></span>
-                </div><br>
-              </div>
-
-            <% elsif reply.option_num == 2 %>
-              <!-- reply3_link-->
-              <div class="reply_gum" id="gum_<%= reply.id %>" style="display: none;">
-                <div class="reply_gum2">
-                  <div class="reply_gum2_text">
-                    <span class="reply_username"><%= reply.user_name %> |</span><br><%= reply.content %>
-                  </div>
-                  <a href="<%= reply.link %>"><div class="reply_gum3_link"></div></a>
-                </div>
-                <!-- <div style="display:inline-block; float:left; cursor:pointer">
-                  <span class="glyphicon glyphicon-chevron-right" style="top:2px" aria-hidden="true"></span> go to news
-                </div> -->
-                <div style="display:inline-block; float:right">
-                  <span class="glyphicon glyphicon-heart likeReply" style="cursor:pointer; top:2px" aria-hidden="true" num="<%= reply.id %>"></span> <span id="reply_count_<%= reply.id %>"><%= reply.like_count %></span>
-                  <span class="glyphicon glyphicon-remove dislikeReply" style="cursor:pointer; top:2px" aria-hidden="true" num="<%= reply.id %>"></span> <span id="anti_count_<%= reply.id %>"><%= reply.unlike_count %></span>
-                </div><br>
-              </div>
-
-            <% elsif reply.option_num == 3 %>
-              <!-- reply2&4_information/blahblah-->
-              <div class="reply_gum" id="gum_<%= reply.id %>" style="display: none;">
-                <div class="reply_gum2">
-                  <div class="reply_gum2_text">
-                    <span class="reply_username"><%= reply.user_name %> |</span><br><%= reply.content %>
-                  </div>
-                </div>
-                <div style="float:right">
-                  <span class="glyphicon glyphicon-heart likeReply" style="cursor:pointer; top:2px" aria-hidden="true" num="<%= reply.id %>"></span> <span id="reply_count_<%= reply.id %>"><%= reply.like_count %></span>
-                  <span class="glyphicon glyphicon-remove dislikeReply" style="cursor:pointer; top:2px" aria-hidden="true" num="<%= reply.id %>"></span> <span id="anti_count_<%= reply.id %>"><%= reply.unlike_count %></span>
-                </div><br>
-              </div>
-            <% end %>
-          <% end %>
 
         </div> <!--col-md-4(news)-->
       </div>

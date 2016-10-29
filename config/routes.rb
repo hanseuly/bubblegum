@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root 'home#login'
   match "/:controller(/:action(/:id))", :via => [:get, :post]
   post "/post/create", to: "post#create"
-  get "/home/ggum"
+  post "/home/ggum"
 
 
   # The priority is based upon order of creation: first created -> highest priority.
