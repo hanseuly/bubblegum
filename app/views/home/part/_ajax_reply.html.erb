@@ -185,32 +185,37 @@ $(document).ready(function(){
 
 
   $(".ggum_ddak_ji").click(function(e){
-    var text = $(this).text();
-    var post_id = window.location.pathname.split('/').pop();
-    $(".reply_gum").remove();
+    if (e.currentTarget == e.target) {
+      var text = $(this).text();
+      var post_id = window.location.pathname.split('/').pop();
+      $(".article_image").css({
+        'display': 'none'
+      });
+      $('.reply_gum').remove();
+      $.ajax({
+        method: 'post',
+        data: {query: text, post_id: post_id},
+        url: '/home/ggum',
+        success: function(data) {
+          console.log(data);
+          data.forEach(function(elem) {
+            if (elem.option_num == 0) {
+              $('.col-md-5').append(imageBubble(elem));
+            } else if (elem.option_num == 1) {
+              $('.col-md-5').append(infoBubble(elem));
+            } else if (elem.option_num == 2) {
+              $('.col-md-5').append(linkBubble(elem));
+            } else if (elem.option_num == 3) {
+              $('.col-md-5').append(blahBubble(elem));
 
-    $.ajax({
-      method: 'post',
-      data: {query: text, post_id: post_id},
-      url: '/home/ggum',
-      success: function(data) {
-        data.forEach(function(elem) {
-          if (elem.option_num == 0) {
-            $('.col-md-5').append(imageBubble(elem));
-          } else if (elem.option_num == 1) {
-            $('.col-md-5').append(infoBubble(elem));
-          } else if (elem.option_num == 2) {
-            $('.col-md-5').append(linkBubble(elem));
-          } else if (elem.option_num == 3) {
-            $('.col-md-5').append(blahBubble(elem));
-
-          }
-        })
-      },
-      error: function(err) {
-        alert('문제가 있습니다.');
-      }
-    })
+            }
+          })
+        },
+        error: function(err) {
+          alert('문제가 있습니다.');
+        }
+      })
+    }
     // fadeInImg(this, 'clicked');
     // hideClickedImage(this);
     // $("#gum_" + id).hide().attr("status", "in");
