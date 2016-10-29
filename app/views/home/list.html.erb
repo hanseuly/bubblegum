@@ -89,16 +89,13 @@
     /*transform-origin:50% 170px;*/
     transform-origin:50% 230px;
     text-align:center;
-    opacity:0.5;
+    display:none;
   }
   .bubble1 > div {
     animation: inner-circle 10s linear infinite;
   }
-  .listbox:hover .bubble1 {
-    opacity:1;
-  }
   .article_tags {
-    position:absolute; top:-20vh; width:30%; left:50%; transform:translateX(-50%); text-align:center; font-size:20pt;
+    position:absolute; top:-15vh; width:30%; left:50%; transform:translateX(-50%); text-align:center; font-size:20pt; display:none;
   }
 </style>
 
@@ -111,6 +108,20 @@
 
 <!-- date&time -->
 <script>
+
+  $(".listbox").hover(function(){
+       $(".bubble1").css("display", "block");
+       }, function(){
+       $(".bubble1").css("display", "none");
+   });
+
+   $(".listbox").hover(function(){
+        $(".article_tags").css("display", "block");
+        }, function(){
+        $(".article_tags").css("display", "none");
+    });
+
+
   tday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
   tmonth=new Array("01","02","03","04","05","06","07","08","09","10","11","12");
 
