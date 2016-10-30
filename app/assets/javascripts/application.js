@@ -80,10 +80,12 @@ document.onmouseup = function() {
   getSelectText = selectText();
 
   if (getSelectText != ""){
-    $("#button_form").fadeIn('fast');
+    $("#button_form").animate({width: "350px"}, "fast");
+    // $("#button_form").toggle( 'slide', 'right', 500);
   }
   if (getSelectText == "") {
-    $("#button_form").fadeOut('fast');
+    $("#button_form").animate({width: "0px"}, "fast");
+    // $("#button_form").fadeOut('fast');
   }
 
 
