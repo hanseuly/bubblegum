@@ -198,6 +198,7 @@ $(document).ready(function(){
         url: '/home/ggum',
         success: function(data) {
           data.forEach(function(elem) {
+            console.log(elem);
             if (elem.option_num == 0) {
               $('.col-md-5').append(imageBubble(elem));
             } else if (elem.option_num == 1) {

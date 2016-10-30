@@ -8,7 +8,7 @@ class ReplyController < ApplicationController
     reply.user_name = params[:user_name]
     # reply.user_name = User.find(params[:user_id]).name
     reply.option_num = params[:option_num]
-    reply.location_text = params[:location_text]
+    reply.location_text = params[:location_text].strip
     reply.location  = params[:location]
     reply.link    = params[:link] unless params[:link].nil?
     reply.content = params[:content] unless params[:content].nil?

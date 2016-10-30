@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
 
+
   def login
   end
 
@@ -33,7 +34,7 @@ class HomeController < ApplicationController
   def ggum
     post = Post.find(params[:post_id])
     ggum = post.replies
-      .where(location_text: params[:query])
+      .where("replies.location_text LIKE ?", "%#{params[:query].strip}%")
       .order('like_count DESC')
     render json: ggum
   end
