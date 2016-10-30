@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root 'home#login'
   match "/:controller(/:action(/:id))", :via => [:get, :post]
   post "/post/create", to: "post#create"
+  post "/home/ggums"
   post "/home/ggum"
 
 
