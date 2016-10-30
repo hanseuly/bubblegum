@@ -48,13 +48,7 @@
         </div>
 
         <div class="article_tags">
-          <% 3.times do |idx| %>
-            <div style="">
-              <% unless post.replies[idx].nil? %>
-                #<%= post.replies[idx].location_text %>
-              <% end %>
-            </div>
-          <% end %>
+          <%= post.get_hashtags %>          
         </div>
 
 

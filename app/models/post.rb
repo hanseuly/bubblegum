@@ -17,6 +17,19 @@ class Post < ActiveRecord::Base
     return Post.attribute_names - x
   end
 
+  def get_hashtags
+    ret = ""
+    relies_text = self.replies.map{|reply| reply.location_text}.uniq
+    3.times do |idx|
+      unless relies_text[idx].nil?
+        ret += '<div style="">'
+        ret += "##{relies_text[idx]}"
+        ret += '</div>'
+      end
+    end
+    ret.html_safe
+  end
+
   def content_to_split_span_block
     content = self.content
     content2 = content.gsub("<p class=\"post_content\">",'').gsub("</p>",'').gsub("<br>"," <br> ")
