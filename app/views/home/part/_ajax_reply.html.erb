@@ -189,7 +189,51 @@ var showBubbles = function(bulk, selector, event) {
   });
 }
 
+
+function selectText() {
+  var selectionText = "";
+  if (document.getSelection) {
+    selectionText = document.getSelection();
+  } else if (document.selection) {
+    selectionText = document.selection.createRange().text;
+  }
+  return selectionText;
+}
+
+
 $(document).ready(function(){
+
+  $('.post_content').mouseup(function(){
+    console.log('post contesnt mouse up')
+    var selectedText = '';
+    var getSelectText = '';
+    getSelectText = selectText().toString();
+    if (getSelectText != ""){
+      $("#button_form").animate({width: "350px"}, "fast");
+      // $("#button_form").toggle( 'slide', 'right', 500);
+    }
+    if (getSelectText == "") {
+      $("#button_form").animate({width: "0px"}, "fast");
+      // $("#button_form").fadeOut('fast');
+    }
+
+
+    if(getSelectText != '') {
+    	selectedText = getSelectText;
+    } else {
+  	  return;
+    }
+    document.getElementById("myModalLabel1").innerHTML = selectedText;
+    document.getElementById("myModalLabel2").innerHTML = selectedText;
+    document.getElementById("myModalLabel3").innerHTML = selectedText;
+    document.getElementById("myModalLabel4").innerHTML = selectedText;
+
+    document.getElementById("locationText1").innerHTML = selectedText;
+    document.getElementById("locationText2").innerHTML = selectedText;
+    document.getElementById("locationText3").innerHTML = selectedText;
+    document.getElementById("locationText4").innerHTML = selectedText;
+  });
+
 
   $(".ggum_ddak_ji").hover(function(e){
     if (e.currentTarget == e.target) {
@@ -233,31 +277,6 @@ $(document).ready(function(){
       })
     }
   });
-
-
-
-    // $("#replySubmit").click(function(){
-
-    //     $.ajax({
-    //         method: "POST",
-    //         url: "/reply/create",
-    //         data: {
-    //             post_id: post_id,
-    //             user_name: user_name,
-    //             option_num: option_num,
-    //             content: content,
-    //             img_url: img_url
-    //         },
-    //         dataType: "json"
-    //     })
-    //     .done(function( json ) {
-    //         var replies = json.Reply;
-    //         var current_reply = json.current_reply;
-    //         var current_post = json.current_post;
-    //         // var current_user = json.current_user;
-
-    //     })
-    // });
 
   $(".likePost").click(function(){
     var this_post = $(this);

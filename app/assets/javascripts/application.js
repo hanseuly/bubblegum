@@ -64,46 +64,46 @@
 // }
 
 //// Draged TEXT /////////////
-function selectText() {
-  var selectionText = "";
-  if (document.getSelection) {
-    selectionText = document.getSelection();
-  } else if (document.selection) {
-    selectionText = document.selection.createRange().text;
-  }
-  return selectionText;
-}
-
-document.onmouseup = function() {
-  var selectedText = '';
-  var getSelectText = '';
-  getSelectText = selectText();
-
-  if (getSelectText != ""){
-    $("#button_form").animate({width: "350px"}, "fast");
-    // $("#button_form").toggle( 'slide', 'right', 500);
-  }
-  if (getSelectText == "") {
-    $("#button_form").animate({width: "0px"}, "fast");
-    // $("#button_form").fadeOut('fast');
-  }
-
-
-  if(getSelectText != '') {
-  	selectedText = getSelectText;
-  } else {
-	  return;
-  }
-  document.getElementById("myModalLabel1").innerHTML = selectedText;
-  document.getElementById("myModalLabel2").innerHTML = selectedText;
-  document.getElementById("myModalLabel3").innerHTML = selectedText;
-  document.getElementById("myModalLabel4").innerHTML = selectedText;
-
-  document.getElementById("locationText1").innerHTML = selectedText;
-  document.getElementById("locationText2").innerHTML = selectedText;
-  document.getElementById("locationText3").innerHTML = selectedText;
-  document.getElementById("locationText4").innerHTML = selectedText;
-}
+// function selectText() {
+//   var selectionText = "";
+//   if (document.getSelection) {
+//     selectionText = document.getSelection();
+//   } else if (document.selection) {
+//     selectionText = document.selection.createRange().text;
+//   }
+//   return selectionText;
+// }
+//
+// document.onmouseup = function() {
+//   var selectedText = '';
+//   var getSelectText = '';
+//   getSelectText = selectText();
+//   console.log
+//   if (getSelectText != ""){
+//     $("#button_form").animate({width: "350px"}, "fast");
+//     // $("#button_form").toggle( 'slide', 'right', 500);
+//   }
+//   if (getSelectText == "") {
+//     $("#button_form").animate({width: "0px"}, "fast");
+//     // $("#button_form").fadeOut('fast');
+//   }
+//
+//
+//   if(getSelectText != '') {
+//   	selectedText = getSelectText;
+//   } else {
+// 	  return;
+//   }
+//   document.getElementById("myModalLabel1").innerHTML = selectedText;
+//   document.getElementById("myModalLabel2").innerHTML = selectedText;
+//   document.getElementById("myModalLabel3").innerHTML = selectedText;
+//   document.getElementById("myModalLabel4").innerHTML = selectedText;
+//
+//   document.getElementById("locationText1").innerHTML = selectedText;
+//   document.getElementById("locationText2").innerHTML = selectedText;
+//   document.getElementById("locationText3").innerHTML = selectedText;
+//   document.getElementById("locationText4").innerHTML = selectedText;
+// }
 
 
 
