@@ -197,7 +197,6 @@ $(document).ready(function(){
         data: {query: text, post_id: post_id},
         url: '/home/ggum',
         success: function(data) {
-          console.log(data);
           data.forEach(function(elem) {
             if (elem.option_num == 0) {
               $('.col-md-5').append(imageBubble(elem));
