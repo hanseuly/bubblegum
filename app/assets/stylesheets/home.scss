@@ -30,6 +30,10 @@ body {
   text-shadow: none;
 }
 
+textarea {
+  resize:none;
+}
+
 textarea:focus, input:focus, button:focus{
     outline: 0;
 }
@@ -544,6 +548,7 @@ input:-webkit-autofill {
   margin:auto;
   margin-bottom:20px;
   cursor:pointer;
+    line-height:240px;
 }
 .bubble2 div {
   width:100%;
@@ -553,7 +558,7 @@ input:-webkit-autofill {
   color:black;
   font-size:20pt;
   text-align:center;
-  line-height:240px;
+  line-height:1;
   opacity:0;
   transition: all .2s ease-in-out;
 }
