@@ -55,8 +55,8 @@
               </div>
               <div class="modal-body">
                 <img src="<%= reply.img_url %>"><br><br>
-                <h3>ID</h3><br>
-                댓글내용(text)
+                <h3><%= reply.user_name %></h3><br>
+                <%= reply.content %>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
