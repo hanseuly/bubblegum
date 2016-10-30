@@ -1,4 +1,6 @@
 <script type="text/javascript">
+var isClicked = false;
+var clickedElement = null
 var likeContainer = function(elem) {
   var likeContainer = $('<div/>')
     .css({'float': 'right'});
@@ -134,31 +136,6 @@ var blahBubble = function(elem) {
     .append(likes);
 }
 
-var fadeInImg = function(_this, evt) {
-  var id = $(_this).attr("id");
-  $(".article_image").hide();
-  $("#gum_" + id).fadeIn();
-  if (evt == 'clicked') {
-    $("#gum_" + id).addClass('clicked')
-  }
-};
-
-var fadeOutImg = function(_this) {
-  var id = $(_this).attr("id");
-  var ggum = "#gum_" + id;
-  var it = $(ggum).attr("status");
-
-  if ($(ggum).hasClass('clicked')) {
-
-  } else {
-    $(ggum).hide();
-    $(".article_image").fadeIn();
-    if (it == "in"){
-      $(ggum).fadeIn();
-    };
-  }
-}
-
 var hideClickedImage = function(_this) {
   var id = 'gum_' + $(_this).attr("id");
   var ggum = "#gum_" + id;
@@ -170,72 +147,93 @@ var hideClickedImage = function(_this) {
   });
 }
 
+var hideImage = function(selector) {
+  console.log('selector hide image', selector)
+  $(selector).hide();
+}
+
+var fadeImage = function(selector) {
+  console.log('selector fade image', selector)
+
+  $(selector).fadeIn()
+}
+
+var showBubbles = function(bulk, selector, event) {
+  var data = [];
+  if($(selector).is(':hover') && clickedElement != selector ) {
+
+    hideImage('.article_image');
+  } else {
+    return false;
+  }
+  $('.reply_gum').remove();
+  if ($.isArray(bulk)) {
+    data = bulk;
+  } else {
+    data.push(bulk)
+  }
+  if (event.type == 'click') {
+    clickedElement = selector;
+    isClicked = true;
+  }
+  data.forEach(function(elem) {
+    if (elem.option_num == 0) {
+      $('.col-md-5').append(imageBubble(elem));
+    } else if (elem.option_num == 1) {
+      $('.col-md-5').append(infoBubble(elem));
+    } else if (elem.option_num == 2) {
+      $('.col-md-5').append(linkBubble(elem));
+    } else if (elem.option_num == 3) {
+      $('.col-md-5').append(blahBubble(elem));
+    }
+  });
+}
+
 $(document).ready(function(){
-  // $(".span_block").click(function(){
-  //   var block = $(this).attr("id");
-  //   $(".location_input").empty('');
-  //   $(".location_input").attr("value", block);
-  // });
-  //
-  // $(".ggum_ddak_ji").hover(function(){
-  //   fadeInImg(this);
-  // }, function() {
-  //   fadeOutImg(this);
-  // });
+
+  $(".ggum_ddak_ji").hover(function(e){
+    if (e.currentTarget == e.target) {
+      var text = $(this).text();
+      var post_id = window.location.pathname.split('/').pop();
+      $.ajax({
+        method: 'post',
+        data: {query: text, post_id: post_id},
+        url: '/home/ggum',
+        success: function(data) {
+          showBubbles(data, e.currentTarget, e);
+        }
+      })
+    }
+  }, function(e) {
+    if (e.currentTarget == e.target) {
+      if($(e.currentTarget).is(':hover')) {
+        return false;
+      } else if (!isClicked) {
+        $('.reply_gum').remove();
+        fadeImage('.article_image');
+      }
+    }
+  });
 
 
   $(".ggum_ddak_ji").click(function(e){
     if (e.currentTarget == e.target) {
       var text = $(this).text();
       var post_id = window.location.pathname.split('/').pop();
-      $(".article_image").css({
-        'display': 'none'
-      });
-      $('.reply_gum').remove();
       $.ajax({
         method: 'post',
         data: {query: text, post_id: post_id},
-        url: '/home/ggum',
+        url: '/home/ggums',
         success: function(data) {
-          data.forEach(function(elem) {
-            console.log(elem);
-            if (elem.option_num == 0) {
-              $('.col-md-5').append(imageBubble(elem));
-            } else if (elem.option_num == 1) {
-              $('.col-md-5').append(infoBubble(elem));
-            } else if (elem.option_num == 2) {
-              $('.col-md-5').append(linkBubble(elem));
-            } else if (elem.option_num == 3) {
-              $('.col-md-5').append(blahBubble(elem));
-
-            }
-          })
+          showBubbles(data, e.currentTarget, e);
         },
         error: function(err) {
           alert('문제가 있습니다.');
         }
       })
     }
-    // fadeInImg(this, 'clicked');
-    // hideClickedImage(this);
-    // $("#gum_" + id).hide().attr("status", "in");
-    // $(".article_image").fadeIn();
-    // var sid = $(_this).attr("id");
-    // $("#gum_" + sid).fadeIn();
   });
 
-  // $(".most_best").hover(function(){
-  //   fadeInImg(this)
-  // }, function(){
-  //   var id = $(this).attr("id");
-  //   $("#gum_" + id).hide();
-  //   var it = $("#gum" + id).attr("status");
-  //   // alert(it);
-  //   $(".article_image").fadeIn();
-  //   if (it == "in"){
-  //     $("#gum_" + id).fadeIn();
-  //   };
-  // });
 
 
     // $("#replySubmit").click(function(){

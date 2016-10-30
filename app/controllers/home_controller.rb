@@ -31,13 +31,23 @@ class HomeController < ApplicationController
   def main_pre
   end
 
-  def ggum
+  def ggums
     post = Post.find(params[:post_id])
     ggum = post.replies
       .where("replies.location_text LIKE ?", "%#{params[:query].strip}%")
       .order('like_count DESC')
     render json: ggum
   end
+
+  def ggum
+    post = Post.find(params[:post_id])
+    ggum = post.replies
+      .where("replies.location_text LIKE ?", "%#{params[:query].strip}%")
+      .order('like_count DESC')
+      .first
+    render json: ggum
+  end
+
 
   def main
     @post = Post.last
