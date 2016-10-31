@@ -43,31 +43,30 @@
                 <div><%= reply.content %></div>
               </div>
             </div>
-        </div>
-
           <!-- Modal -->
-          <div class="modal fade" id="myModal-<%=reply.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document" style="width:auto;">
+            <div class="modal fade" id="myModal-<%=reply.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document" style="width:auto;">
 
-              <div class="listpre_modal">
-                <div class="listpre_modal_h">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:relative; top:-15px"><span aria-hidden="true">&times;</span></button>
-                  <a href="/home/main/<%= "#{@post.id}##{val}" %>" stlye="font-size:20pt">
-                    #<%=key%>
-                  </a>
+                <div class="listpre_modal">
+                  <div class="listpre_modal_h">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:relative; top:-15px"><span aria-hidden="true">&times;</span></button>
+                    <a href="/home/main/<%= "#{@post.id}##{val}" %>" stlye="font-size:20pt">
+                      #<%=reply.abbr_text.html_safe %>
+                    </a>
+                  </div>
+                  <div class="listpre_modal_b">
+                      <img class="img-responsive" src="<%= reply.img_url %>">
+                  </div>
+                  <div class="listpre_modal_f">
+                    <div class="listpre_username"><%= reply.user_name %></div>
+                    <%= reply.content %>
+                  </div>
                 </div>
-                <div class="listpre_modal_b">
-                    <img class="img-responsive" src="<%= reply.img_url %>">
-                </div>
-                <div class="listpre_modal_f">
-                  <div class="listpre_username"><%= reply.user_name %></div>
-                  <%= reply.content %>
-                </div>
+
               </div>
-
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       <% end %>
     </div>
 

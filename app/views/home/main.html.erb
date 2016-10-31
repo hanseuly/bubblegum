@@ -96,6 +96,8 @@
               <input type="hidden" name="option_num" value="0">
               <input class="input_username" type="text" name="user_name" placeholder="ID" ><br>
               <textarea class="input_text" type="text" name="content" placeholder="TEXT"></textarea><br>
+              <input type='hidden' name='abbr_text' id = 'abbr_text1' value = ''>
+
               <!--<input class="input_file" type="file" id="tag_file" accept="image/*" onchange="loadFile(event)">-->
               <%= file_field 'upload', 'datafile', class: "input_file", id: "tag_file" %>
             </div>
@@ -124,7 +126,9 @@
               <input type="hidden" name="post_id" value="<%= @post.id %>">
               <input type="hidden" name="option_num" value="1">
               <input class="input_username" type="text" name="user_name" placeholder="ID" ><br>
+              <input type='hidden' name='abbr_text' id = 'abbr_text2' value = ''>
               <textarea class="input_text" type="text" name="content" placeholder="TEXT"></textarea><br>
+
             </div>
             <input class="input_submit" type="submit" value="BLOW">
           </form>
@@ -151,6 +155,8 @@
               <input type="hidden" name="option_num" value="2">
               <input class="input_username" type="text" name="user_name" placeholder="ID" ><br>
               <input class="input_username" type="text" name="link" placeholder="Link Address"><br>
+              <input type='hidden' name='abbr_text' id = 'abbr_text3' value = ''>
+
               <textarea class="input_text" type="text" name="content" placeholder="TEXT"></textarea><br>
             </div>
             <input class="input_submit" type="submit" value="BLOW">
@@ -178,6 +184,8 @@
               <input type="hidden" name="post_id" value="<%= @post.id %>">
               <input type="hidden" name="option_num" value="3">
               <input class="input_username" type="text" name="user_name" placeholder="ID" ><br>
+              <input type='hidden' name='abbr_text' id = 'abbr_text4' value = ''>
+
               <textarea class="input_text" style="height:190px" type="text" name="content" placeholder="TEXT"></textarea><br>
             </div>
             <input class="input_submit" type="submit" value="BLOW">

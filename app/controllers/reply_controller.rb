@@ -13,6 +13,7 @@ class ReplyController < ApplicationController
     reply.link    = params[:link] unless params[:link].nil?
     reply.content = params[:content] unless params[:content].nil?
     reply.img_url = DataFile.save(params[:upload], "/post/#{params[:post_id]}").to_s unless params[:upload].nil?
+    reply.abbr_text = params[:abbr_text].strip || params[:location_text].strip
     reply.save
     # render json: {
     #               Reply:          Reply.all,
