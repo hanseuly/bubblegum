@@ -30,6 +30,16 @@ class Post < ActiveRecord::Base
     ret.html_safe
   end
 
+  def get_imageTags
+    ret = {}
+    self.replies
+      .select {|reply| reply.option_num  == $IMAGE_BUBBLE }
+      .uniq
+      .each {|reply| ret[reply.location_text] = reply.id }
+    ret
+  end
+
+
   def content_to_split_span_block
     content = self.content
     content2 = content.gsub("<p class=\"post_content\">",'').gsub("</p>",'').gsub("<br>"," <br> ")
