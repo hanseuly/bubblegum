@@ -31,7 +31,7 @@
     </div>
     <% @hashTags.each do |key, val| %>
       <div class="box_contents">
-        <a href="/home/main/<%= "#{@post.id}##{val}"  %>"><h2>#<%=key%></h2></a><br>
+        <a href="/home/main/<%= "#{@post.id}##{val}" %>"><h2>#<%=key%></h2></a><br>
         <% @replies.each do |reply| %>
           <% next if reply.location_text != key %>
           <div class="col-md-4">
@@ -45,7 +45,7 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <a href="/home/main/<%= @post.id %>" stlye="font-size:20pt"><h4 class="modal-title" id="myModalLabel">#태그</h4></a>
+                  <a href="/home/main/<%= "#{@post.id}##{val}" %>" stlye="font-size:20pt"><h4 class="modal-title" id="myModalLabel">#<%=key%></h4></a>
                 </div>
                 <div class="modal-body">
                   <img src="<%= reply.img_url %>"><br><br>
