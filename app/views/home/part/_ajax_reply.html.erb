@@ -200,6 +200,28 @@ function selectText() {
   return selectionText;
 }
 
+function getAbbrText(selectedText) {
+  var startRange = Math.min(selectedText.baseOffset, selectedText.focusOffset);
+  var endRange = Math.max(selectedText.baseOffset, selectedText.focusOffset);
+  var dataString = selectedText.focusNode.data;
+  strStartRange = Math.max(0, startRange -6);
+  strEndRange = Math.min(dataString.length, endRange + 6);
+  var str = "";
+  for(var i = strStartRange; i < startRange; i ++) {
+    str += dataString[i];
+  }
+  str += "<span>";
+  for(var i = startRange; i < endRange; i++) {
+    str += dataString[i];
+  }
+  str += "</span>";
+  for(var i = endRange; i < strEndRange; i++) {
+    str += dataString[i];
+  }
+
+  return str;
+}
+
 
 $(document).ready(function(){
 
@@ -208,6 +230,7 @@ $(document).ready(function(){
     var selectedText = '';
     var getSelectText = '';
     getSelectText = selectText().toString();
+    texting = selectText();
     if (getSelectText != ""){
       $("#button_form").animate({width: "350px"}, "fast");
       // $("#button_form").toggle( 'slide', 'right', 500);
@@ -216,13 +239,14 @@ $(document).ready(function(){
       $("#button_form").animate({width: "0px"}, "fast");
       // $("#button_form").fadeOut('fast');
     }
-
-
     if(getSelectText != '') {
     	selectedText = getSelectText;
     } else {
   	  return;
     }
+
+    var abbrText = getAbbrText(selectText());
+
     document.getElementById("myModalLabel1").innerHTML = selectedText;
     document.getElementById("myModalLabel2").innerHTML = selectedText;
     document.getElementById("myModalLabel3").innerHTML = selectedText;
@@ -232,6 +256,14 @@ $(document).ready(function(){
     document.getElementById("locationText2").innerHTML = selectedText;
     document.getElementById("locationText3").innerHTML = selectedText;
     document.getElementById("locationText4").innerHTML = selectedText;
+
+    console.log(abbrText);
+
+    $("#abbr_text1").val(abbrText);
+    $("#abbr_text2").val(abbrText);
+    $("#abbr_text3").val(abbrText);
+    $("#abbr_text4").val(abbrText);
+
   });
 
 
@@ -298,7 +330,6 @@ $(document).ready(function(){
   $(document).on('click', '.likeReply', function(){
     var this_reply = $(this);
     var replyId = this_reply.attr("num");    // like button with attribute name of num="(this_reply.id)"
-    console.log(replyId);
     var user_id = $("#userId").val();        // hidden type input with id="userId" value="(current_user.id)"
     $.ajax({
       method: "POST",
