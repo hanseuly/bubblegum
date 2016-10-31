@@ -29,34 +29,42 @@
       </div>
       <input type="hidden" id="userId" value="2">
     </div>
-    <% @hashTags.each do |key, val| %>
-      <div class="box_contents">
-        <a href="/home/main/<%= "#{@post.id}##{val}" %>"><h2>#<%=key%></h2></a><br>
-        <% @replies.each do |reply| %>
-          <% next if reply.location_text != key %>
-          <div class="col-md-4">
-            <div class="bubble2" style="background-image: url('<%= reply.img_url %>');" data-toggle="modal" data-target="#myModal-<%=reply.id%>">
-              <div><%= reply.content %></div>
+
+
+    <div class="box_contents">
+
+      <% @hashTags.each do |key, val| %>
+        <div class="row">
+          <a href="/home/main/<%= "#{@post.id}##{val}" %>"><h2>#<%=key%></h2></a><br>
+          <% @replies.each do |reply| %>
+            <% next if reply.location_text != key %>
+            <div class="col-md-4">
+              <div class="bubble2" style="background-image: url('<%= reply.img_url %>');" data-toggle="modal" data-target="#myModal-<%=reply.id%>">
+                <div><%= reply.content %></div>
+              </div>
             </div>
-          </div>
+        </div>
+
           <!-- Modal -->
           <div class="modal fade" id="myModal-<%=reply.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <a href="/home/main/<%= "#{@post.id}##{val}" %>" stlye="font-size:20pt"><h4 class="modal-title" id="myModalLabel">#<%=key%></h4></a>
+            <div class="modal-dialog" role="document" style="width:auto;">
+
+              <div class="listpre_modal">
+                <div class="listpre_modal_h">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:relative; top:-15px"><span aria-hidden="true">&times;</span></button>
+                  <a href="/home/main/<%= "#{@post.id}##{val}" %>" stlye="font-size:20pt">
+                    #<%=key%>
+                  </a>
                 </div>
-                <div class="modal-body">
-                  <img src="<%= reply.img_url %>"><br><br>
-                  <h3><%= reply.user_name %></h3><br>
+                <div class="listpre_modal_b">
+                    <img class="img-responsive" src="<%= reply.img_url %>">
+                </div>
+                <div class="listpre_modal_f">
+                  <div class="listpre_username"><%= reply.user_name %></div>
                   <%= reply.content %>
                 </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
               </div>
+
             </div>
           </div>
         <% end %>
@@ -76,3 +84,31 @@
     background:#ffc0cb;
   }
 </style>
+
+
+<!-- <script>
+$(document).ready(function() {
+  var divs = document.querySelectorAll('.listpre_modal_b');
+  imagesLoaded(divs, function(inst) {
+    for (var i = 0; i < divs.length; ++i) {
+      var div = divs[i];
+      var divAspect = div.offsetHeight / div.offsetWidth;
+      div.style.overflow = 'hidden';
+
+      var img = div.querySelector('img');
+      var imgAspect = img.height / img.width;
+
+      if (imgAspect <= divAspect) {
+        // 이미지가 div보다 납작한 경우 세로를 div에 맞추고 가로는 잘라낸다
+        var imgWidthActual = div.offsetHeight / imgAspect;
+        var imgWidthToBe = div.offsetHeight / divAspect;
+        var marginLeft = -Math.round((imgWidthActual - imgWidthToBe) / 2)
+        img.style.cssText = 'width: auto; height: 100%;'
+      } else {
+        // 이미지가 div보다 길쭉한 경우 가로를 div에 맞추고 세로를 잘라낸다
+        img.style.cssText = 'width: 100%; height: auto; margin-left: 0;';
+      }
+    }
+  });
+});
+</script> -->
