@@ -18,13 +18,8 @@ class HomeController < ApplicationController
   end
 
   def listpre
-    @posts = Post.all
-    @post = @posts.last
-
-    unless params[:id].nil?
-      @post = Post.find(params[:id])
-    end
-    @view_count = @post.view_count_plus
+    @post = Post.find_by_id(params[:id]) || Post.last
+    @hashTags = @post.get_imageTags
     @replies = @post.replies.where(option_num: 0).all
   end
 
