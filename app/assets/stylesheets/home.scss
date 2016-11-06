@@ -49,6 +49,10 @@ a {
   color:black;
 }
 
+a:hover {
+  color:$main_color2;
+}
+
 .white_bg {
   background: white;
   width:100%;
@@ -285,7 +289,6 @@ input:-webkit-autofill {
   position:relative;
   color:black;
   text-align: center;
-  top:22vh;
 }
 
 .howtouse img {

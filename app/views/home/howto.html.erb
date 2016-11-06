@@ -20,6 +20,16 @@
     margin:15px 0px;
     width:1000px;
   }
+
+  .howto_span {
+    font-weight:700;
+    color:#ff5d76;
+  }
+
+  .howto_flow {
+    width:400px !important;
+    margin-bottom:10px;
+  }
 </style>
 
 <div class="howto_logo"></div>
@@ -30,7 +40,7 @@
   <div class="row" style="height:99%; padding-right:10px; overflow: auto; text-align:center">
     <!-- <img src="/sources/logo_subtitle.png" style="margin-top:20px; width:400px;"> <br> -->
     <br>
-    <iframe src="https://player.vimeo.com/video/190435361?title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    <iframe id="howto_video" src="https://player.vimeo.com/video/190435361?title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
     <br><br>
 
     <h1 class="howto_title">Bubblegum?</h1>
@@ -65,10 +75,54 @@
       스낵컨텐츠를 통하여 뉴스를 읽고 재구성하는 서비스를 제공합니다.<br>
       bubblegum 서비스에서 기사는 한개의 풍선껌으로,<br>
       기사의 일부분을 드래그하여 스낵컨텐츠를 태그하는 행위는 풍선을 부는행위,<br>
-      그리고 그렇게 태그된 스낵컨텐츠는 버블로 정의됩니다.
-    </p>
+      그리고 그렇게 태그된 스낵컨텐츠는 버블로 정의됩니다.<br>
 
-    <h2 class="howto_title"></h2>
+      <h4 class="howto_title">login</h4>
+      <a href="/home/login"><img class="howto_flow" src="/sources/flowchart/flow1.png"></a> <br>
+      로그인하지않아도 풍선껌뉴스를 읽을 수 있지만, 풍선을 불거나 더 다양한 서비스이용을 위해서는 로그인이 필요합니다.<br><br>
+
+      <h4 class="howto_title">Candy Machine : Article Choice Field</h4>
+      <a href="/home/index"><img class="howto_flow" src="/sources/flowchart/flow2.png"></a> <br>
+      bubblegum은 각 언론사의 뉴스를 분야별로 분류하여 가져옵니다. 뉴스스타터는 원하는 분야의 캔디머신을 선택합니다.<br>
+      선택시 각 캔디머신에 업데이트된 기사의 개수를 확인할 수 있습니다.<br><br>
+
+      <h4 class="howto_title">Bubble Experience : Preview Keywords & Bubble Amount</h4>
+      <a href="/home/list"><img class="howto_flow" src="/sources/flowchart/flow3.png"></a> <br>
+      분야 선택 후 캔디머신을 돌리면 오늘의 최신뉴스가 나열됩니다.<br>
+      풍선껌 기사에 마우스를 올리면 해당 기사에 몇 개의 버블이 태그됐는지,<br>
+      태그가 가장 많이 된 기사의 핵심 키워드는 무엇인지 확인 가능합니다. <br><br>
+
+      <h4 class="howto_title">Poping Bubble : Brief News View via Image Bubbles</h4>
+      <a href="/home/listpre"><img class="howto_flow" src="/sources/flowchart/flow4.png"></a> <br>
+      <a href="/home/listpre"><img class="howto_flow" src="/sources/flowchart/flow5.png"></a> <br>
+      기사페이지로 들어오면 뉴스스타터들이 태그해놓은 이미지버블과 키워드를 함께 볼 수 있습니다.<br>
+      버블을 클릭하면 이미지와 뉴스스타터의 댓글을 볼 수 있고, 키워드를 클릭하면 원문페이지로 넘어갑니다. <br><br>
+
+      <h4 class="howto_title">Blowing Bubble : Drag and Tags</h4>
+      <a href="/home/main"><img class="howto_flow" src="/sources/flowchart/flow6.png"></a> <br>
+      <a href="/home/main"><img class="howto_flow" src="/sources/flowchart/flow7.png"></a> <br>
+      앞의 페이지에서 봤던 버블을 누구나 쉽게 불수있습니다.<br>
+      뉴스원문의 일부 단어 혹은 문장을 드래그하면 패널로 등장하는 버블버튼 중 태그하고자 하는 컨텐츠의 성격에 따라 선택합니다.<br><br>
+      <span class="howto_span">Image Bubble</span> 해당 키워드와 관련된 이미지(혹은 짤방)를 태그합니다. <br>
+      <span class="howto_span">Information Bubble</span> 해당 키워드의 정의나 추가 정보를 태그합니다. <br>
+      <span class="howto_span">Linked News Bubble</span> 해당 키워드와 관련된 또 다른 뉴스링크를 태그하여 사건간의 연관성을 확인할 수 있도록 합니다.<br>
+      <span class="howto_span">BlahBlah Bubble</span> 자유로운 의견을 태그합니다.<br><br>
+
+      <h4 class="howto_title">Sticky Gum : News Recomposition by Bubbles</h4>
+      <a href="/home/main"><img class="howto_flow" src="/sources/flowchart/flow8.png"></a> <br>
+      버블을 레이팅하여 뉴스원문을 다른 뉴스스타터와 함께 재구성할 수 있습니다.<br>
+      뉴스스타터들의 싫어요를 5개이상 받은 버블은 사라집니다.<br>
+      반면 좋아요를 10개이상 받았으며 동시에 가장 많이 받은 버블은 뉴스원문에 삽입되어 재구성컨텐츠로 자리잡게 됩니다.<br><br>
+      <span class="howto_span">- 계속 업데이트 중에 있습니다 -</span>
+    </p>
+    <br>
+
+    <a href="/home/login">
+      <h3>Now, Enjoy News like Bubble!</h3>
+    </a>
+    <br><br>
+    <a style="position:fixed; right:50px; bottom:180px;" href="#howto_video"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span><br>Go to top</a>
+    <a style="position:fixed; left:50px; bottom:180px;" href="javascript:history.back()"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><br>Back</a>
 
     <!-- <img src="/sources/logo_subtitle.png" style="margin-top:20px; width:400px;"> <br> -->
 
