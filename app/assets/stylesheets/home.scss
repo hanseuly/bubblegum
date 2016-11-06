@@ -329,6 +329,44 @@ input:-webkit-autofill {
   width:100%;
 }
 
+.index_logo2 {
+  position:absolute;
+  width:200px;
+  height:70px;
+  bottom:30px;
+  // margin-bottom:10px;
+  left:50%;
+  -ms-transform: translateX(-50%); /* IE 9 */
+  -webkit-transform: translateX(-50%); /* Chrome, Safari, Opera */
+  -o-transfrom: translateX(-50%);
+  transform: translateX(-50%);
+  background-image:url(/sources/logo.png);
+  background-size:contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.index_logo2 img {
+  width:100%;
+}
+
+/* 003(howto.erb)----------------------------------------------------------*/
+.howto_logo {
+  position:relative;
+  height:35px;
+  top:40px;
+  margin:auto;
+  background-image:url(/sources/logo_subtitle.png);
+  background-size:contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.howto_logo img {
+  width:100%;
+}
+
+
 /* (machine) *************************************/
 .machine {
   margin:auto;
@@ -607,6 +645,14 @@ input:-webkit-autofill {
   border-bottom: 2px solid black;
 }
 
+.listpre_modal_h a {
+  color:black;
+}
+
+.listpre_modal_h a:hover {
+  color:white;
+}
+
 .listpre_modal_b {
   padding: 15px 5px;
   width:100%;
@@ -634,7 +680,7 @@ input:-webkit-autofill {
   // background-color:white;
   color:black;
   padding: 20px 30px;
-  font-size:15pt;
+  font-size:12pt;
   line-height:1.8;
 }
 
@@ -725,7 +771,7 @@ input:-webkit-autofill {
 }
 
 .reply_username {
-  font-weight:400;
+  font-weight:700;
 }
 
 #button_form {
@@ -747,7 +793,7 @@ input:-webkit-autofill {
   cursor: pointer;
   margin-bottom:25px;
   margin-left:50px;
-  font-size:20pt;
+  font-size:18pt;
 }
 #button_form img { width:50px; }
 
