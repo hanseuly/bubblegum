@@ -19,7 +19,7 @@
 
     <!-- TITLE --------------------------------------------------------------------->
     <div>
-      <a href="/home/main/<%= @post.id %>">
+      <a href="/home/main/<%= @post.id %>" class='bubble-pre'>
         <h1 class="article_title"><%= @post.title %></h1>
       </a><br>
       <style>.article_title:hover { color:white; }</style>
@@ -37,7 +37,7 @@
 
       <% @hashTags.each do |key, val| %>
         <div class="row">
-          <a class="listpre_tag" href="/home/main/<%= "#{@post.id}##{val}" %>"><h2>#<%=key%></h2></a><br>
+          <a href="/home/main/<%= "#{@post.id}##{val}" %>" class='bubble-pre'><h2>#<%=key%></h2></a><br>
           <% @replies.each do |reply| %>
             <% next if reply.location_text != key %>
             <div class="col-md-4">
@@ -54,8 +54,8 @@
                 <div class="listpre_modal">
                   <div class="listpre_modal_h">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position:relative; top:-15px"><span aria-hidden="true">&times;</span></button>
-                    <a href="/home/main/<%= "#{@post.id}##{val}" %>" stlye="font-size:20pt">
-                      <%=reply.abbr_text.html_safe %>
+                    <a href="/home/main/<%= "#{@post.id}##{val}" %>" stlye="font-size:20pt" class='bubble-pre'>
+                      #<%=reply.abbr_text.html_safe %>
                     </a>
                   </div>
                   <div class="listpre_modal_b">
@@ -112,14 +112,7 @@
 </style>
 
 <script type="text/javascript">
-  $('.bubble-container').click(function() {
-    $('#bubble').attr('src', '');
-    $('#bubble').remove();
-
-    $(this).fadeOut();
-  })
-  $('.bubble2').click(function(event) {
-    var modalSelector = $(this).data('modal');
+  var setBubbleContainer = function() {
     $('.bubble-container').css({
       'position': 'absolute',
       'height': '100%',
@@ -127,14 +120,31 @@
       'background': 'rgba(0, 0, 0, 0.5)',
       'z-index': '100'
     })
+  }
+  var appendImage = function(src) {
     $('<img/>')
-      .attr('src',"/sources/bubbleggum.gif")
+      .attr('src', src)
       .attr('width', "100%")
       .attr('height',"100%")
       .attr('id', 'bubble')
       .appendTo('.bubble-container')
-    $('.bubble-container')
-      .fadeIn();
+  }
+
+  var showBubbleContainer = function() {
+    $('.bubble-container').fadeIn();
+  }
+
+  $('.bubble-container').click(function() {
+    $('#bubble').attr('src', '');
+    $('#bubble').remove();
+    $(this).fadeOut();
+  })
+  $('.bubble2').click(function(event) {
+    var modalSelector = $(this).data('modal');
+    setBubbleContainer();
+    appendImage('/sources/bubbleggum.gif');
+    showBubbleContainer();
+
     setTimeout(function(){
       if ($('#bubble').length) {
         $('#bubble').attr('src', '');
@@ -142,7 +152,29 @@
         $('.bubble-container').fadeOut();
         $(modalSelector).modal()
       }
-    }, 1500);
+    }, 1700);
   });
+
+  $('.bubble-pre').click(function(e) {
+    var target = $(this).attr('href');
+    $('.modal').fadeOut();
+
+    e.preventDefault();
+
+
+    setBubbleContainer();
+    appendImage('/sources/bubble_pre.gif');
+    showBubbleContainer();
+
+    setTimeout(function(){
+      if ($('#bubble').length) {
+        $('#bubble').attr('src', '');
+        $('#bubble').remove();
+        $('.bubble-container').fadeOut();
+        window.location.replace(target);
+      }
+    }, 1700);
+  });
+
 
 </script>

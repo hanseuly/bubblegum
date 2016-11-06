@@ -1,4 +1,5 @@
-<!-- <%= render partial: '/home/part/nav.html.erb' %> -->
+<div class='bubble-container' style='display:none'>
+</div>
 
 <div style="position:relative; margin:auto; text-align:center; top:20px">
   <a href="/home/index"><img src="/sources/logo.png" style="height:40px;"></a>
@@ -70,10 +71,10 @@
     <a class="button_back" href="javascript:history.back()"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="top:2px"></span>Back</a><br>
     <!-- Button trigger modal -->
     <div id="button_form">
-      <div data-toggle="modal" data-target="#myModal1"><img src="/sources/button/button1_img.png"> image</div>
-      <div data-toggle="modal" data-target="#myModal2"><img src="/sources/button/button2_info.png"> information</div>
-      <div data-toggle="modal" data-target="#myModal3"><img src="/sources/button/button3_news.png"> news</div>
-      <div data-toggle="modal" data-target="#myModal4"><img src="/sources/button/button4_blah.png"> blahblah</div>
+      <div data-toggle="modal" data-modal="#myModal1" class='bubble-reply'><img src="/sources/button/button1_img.png"> image</div>
+      <div data-toggle="modal" data-modal="#myModal2" class='bubble-reply'><img src="/sources/button/button2_info.png"> information</div>
+      <div data-toggle="modal" data-modal="#myModal3" class='bubble-reply'><img src="/sources/button/button3_news.png"> news</div>
+      <div data-toggle="modal" data-modal="#myModal4" class='bubble-reply'><img src="/sources/button/button4_blah.png"> blahblah</div>
     </div>
 
     <!-- Modal1 : image form tag ----------------------------->
@@ -205,3 +206,55 @@
   </div>
 
 </div>
+
+<script>
+var setBubbleContainer = function() {
+  $('.bubble-container').css({
+    'position': 'absolute',
+    'height': '100%',
+    'width': '100%',
+    'background': 'rgba(0, 0, 0, 0.5)',
+    'z-index': '100'
+  })
+}
+var appendImage = function(src) {
+  $('<img/>')
+    .attr('src', src)
+    .attr('width', "100%")
+    .attr('height',"100%")
+    .attr('id', 'bubble')
+    .appendTo('.bubble-container')
+}
+
+var showBubbleContainer = function() {
+  $('.bubble-container').fadeIn();
+}
+
+$('.bubble-container').click(function() {
+  $('#bubble').attr('src', '');
+  $('#bubble').remove();
+  $(this).fadeOut();
+})
+
+
+$('.bubble-reply').click(function(e) {
+
+  var modalSelector = $(this).data('modal');
+
+  e.preventDefault();
+
+  setBubbleContainer();
+  appendImage('/sources/bubble_reply.gif');
+  showBubbleContainer();
+
+  setTimeout(function(){
+    if ($('#bubble').length) {
+      $('#bubble').attr('src', '');
+      $('#bubble').fadeOut();
+      $('.bubble-container').fadeOut();
+      $(modalSelector).modal()
+    }
+  }, 1900);
+});
+
+</script>
