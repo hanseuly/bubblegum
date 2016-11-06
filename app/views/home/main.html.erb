@@ -1,5 +1,6 @@
-<div class='bubble-container' style='display:none'>
+<div class='bubble-container'>
 </div>
+
 
 <div style="position:relative; margin:auto; text-align:center; top:20px">
   <a href="/home/index"><img src="/sources/logo.png" style="height:40px;"></a>
@@ -207,10 +208,11 @@
 
 </div>
 
+
 <script>
 var setBubbleContainer = function() {
   $('.bubble-container').css({
-    'position': 'absolute',
+    'position': 'fixed',
     'height': '100%',
     'width': '100%',
     'background': 'rgba(0, 0, 0, 0.5)',
@@ -227,7 +229,7 @@ var appendImage = function(src) {
 }
 
 var showBubbleContainer = function() {
-  $('.bubble-container').fadeIn();
+  $('.bubble-container').show();
 }
 
 $('.bubble-container').click(function() {
