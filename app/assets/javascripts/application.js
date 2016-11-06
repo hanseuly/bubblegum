@@ -1,3 +1,6 @@
+//= require libgif
+//= require rubbable
+
 
 ///// Floating div ///////////////
 // $(document).ready(function(){
