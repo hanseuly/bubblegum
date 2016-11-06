@@ -568,6 +568,14 @@ input:-webkit-autofill {
   transition: all .5s ease;
 }
 
+.listpre_tag {
+  color:black;
+}
+
+.listpre_tag:hover {
+  color:white;
+}
+
 .listpre_modal {
   position:relative;
   width:800px;
@@ -576,7 +584,7 @@ input:-webkit-autofill {
   margin:auto;
   background: $main_color1;
   padding: 15px;
-  overflow:auto;
+  overflow-y:auto;
 }
 
 .listpre_modal::-webkit-scrollbar {

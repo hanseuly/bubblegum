@@ -35,7 +35,7 @@
 
       <% @hashTags.each do |key, val| %>
         <div class="row">
-          <a href="/home/main/<%= "#{@post.id}##{val}" %>"><h2>#<%=key%></h2></a><br>
+          <a class="listpre_tag" href="/home/main/<%= "#{@post.id}##{val}" %>"><h2>#<%=key%></h2></a><br>
           <% @replies.each do |reply| %>
             <% next if reply.location_text != key %>
             <div class="col-md-4">
@@ -43,6 +43,8 @@
                 <div><%= reply.content %></div>
               </div>
             </div>
+
+
           <!-- Modal -->
             <div class="modal fade" id="myModal-<%=reply.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document" style="width:auto;">
@@ -78,8 +80,29 @@
 
 </div> <!--row-->
 
+
+<!-- <div class="gifs">
+  <img src="/sources/gif_pop.gif" loop="false">
+</div> -->
+
 <style>
   body{
     background:#ffc0cb;
   }
+  .gifs {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    min-height:100vh;
+    background-color:rgba(0,0,0,0.7);
+  }
+  .gifs img {
+    width:100%;
+  }
+
 </style>
+
+<script>
+
+</script>
