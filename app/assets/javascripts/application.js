@@ -1,5 +1,4 @@
-//= require libgif
-//= require rubbable
+//= require gifPlayer
 
 
 ///// Floating div ///////////////
