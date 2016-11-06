@@ -1,5 +1,4 @@
 <div class='bubble-container' style='display:none'>
-  <img src="/sources/bubbleggum.gif" width="100%" height="100%" id='bubble' data-label="stop" class='gifplayer'/>
 </div>
 <div style="position:relative; margin:auto; text-align:center; top:20px">
   <a href="/home/index"><img src="/sources/logo.png" style="height:40px;"></a>
@@ -42,7 +41,7 @@
           <% @replies.each do |reply| %>
             <% next if reply.location_text != key %>
             <div class="col-md-4">
-              <div class="bubble2" style="background-image: url('<%= reply.img_url %>');">
+              <div class="bubble2" data-modal = "#myModal-<%=reply.id%>" style="background-image: url('<%= reply.img_url %>');">
                 <div><%= reply.content %></div>
               </div>
             </div>
@@ -113,30 +112,37 @@
 </style>
 
 <script type="text/javascript">
-  $('#bubble').gifplayer({
-      onPlay: function(){
-          console.log('GIF started',this);
-      },
-      onStop: function(){
-          console.log('GIF stopped',this);
-      },
-  });
   $('.bubble-container').click(function() {
+    $('#bubble').attr('src', '');
+    $('#bubble').remove();
+
     $(this).fadeOut();
   })
   $('.bubble2').click(function(event) {
+    var modalSelector = $(this).data('modal');
     $('.bubble-container').css({
       'position': 'absolute',
       'height': '100%',
       'width': '100%',
       'background': 'rgba(0, 0, 0, 0.5)',
       'z-index': '100'
-    }).fadeIn();
-    $('.gifplayer-wrapper').css({
-      'height': '100%',
-      'width': '100%'
     })
-
+    $('<img/>')
+      .attr('src',"/sources/bubbleggum.gif")
+      .attr('width', "100%")
+      .attr('height',"100%")
+      .attr('id', 'bubble')
+      .appendTo('.bubble-container')
+    $('.bubble-container')
+      .fadeIn();
+    setTimeout(function(){
+      if ($('#bubble').length) {
+        $('#bubble').attr('src', '');
+        $('#bubble').remove();
+        $('.bubble-container').fadeOut();
+        $(modalSelector).modal()
+      }
+    }, 1500);
   });
 
 </script>

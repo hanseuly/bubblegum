@@ -208,15 +208,21 @@ function getAbbrText(selectedText) {
   strEndRange = Math.min(dataString.length, endRange + 6);
   var str = "";
   for(var i = strStartRange; i < startRange; i ++) {
-    str += dataString[i];
+    if(dataString[i] != undefined) {
+      str += dataString[i];
+    }
   }
   str += "<span>";
   for(var i = startRange; i < endRange; i++) {
-    str += dataString[i];
+    if(dataString[i] != undefined) {
+      str += dataString[i];
+    }
   }
   str += "</span>";
   for(var i = endRange; i < strEndRange; i++) {
-    str += dataString[i];
+    if(dataString[i] != undefined) {
+      str += dataString[i];
+    }
   }
 
   return str;
